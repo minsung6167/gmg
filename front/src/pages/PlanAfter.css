@@ -1,0 +1,22 @@
+.plan-after {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+}
+
+.header-area {
+    flex-shrink: 0;
+}
+
+.map-area {
+    flex: 1;
+}
+
+.day-tabs-area {
+    flex-shrink: 0;
+}
+
+.schedule-area {
+    flex: 1;
+    overflow-y: auto;
+}

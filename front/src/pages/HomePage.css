@@ -1,0 +1,17 @@
+.home-page {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+}
+
+.filter-area {
+    flex-shrink: 0;
+}
+
+.map-area {
+    flex: 1;
+}
+
+.button-area {
+    flex-shrink: 0;
+}

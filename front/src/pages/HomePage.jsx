@@ -1,8 +1,20 @@
 function HomePage() {
     return (
         <div className="home-page">
-            {/* 화면 1: 필터 + 카카오맵 + 랜덤 여행지 추천 버튼 */}
+            <div className="filter-area">
+                {/* 필터 영역 */}
+                필터
+            </div>
 
+            <div className="map-area">
+                {/* 지도 영역 */}
+                지도
+            </div>
+
+            <div className="button-area">
+                {/* 버튼 영역 */}
+                버튼
+            </div>
         </div>
     )
 }

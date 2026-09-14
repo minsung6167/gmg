@@ -1,0 +1,18 @@
+.plan-before {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+}
+
+.header-area {
+    flex-shrink: 0;
+}
+
+.favorite-list-area {
+    flex: 1;
+    overflow-y: auto;
+}
+
+.button-area {
+    flex-shrink: 0;
+}
