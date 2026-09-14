@@ -22,3 +22,16 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
+
+# 백엔드
+back/target/
+back/.mvn/wrapper/maven-wrapper.jar
+back/src/main/resources/application-local.properties
+
+# 프론트엔드
+front/node_modules/
+front/dist/
+
+# 공통
+.vscode/
+.DS_Store
