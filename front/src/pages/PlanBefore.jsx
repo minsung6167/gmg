@@ -1,5 +1,6 @@
 import './PlanBefore.css'
 
+// 화면 3-B: AI 일정 생성 전, 즐겨찾기 리스트와 "AI 계획 짜기" 버튼을 보여주는 화면
 function PlanBefore() {
     return (
         <div className="plan-before">
