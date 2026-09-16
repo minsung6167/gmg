@@ -8,8 +8,6 @@ function FilterBar({
     companionType, setCompanionType,
     theme, setTheme,
     hasCar, setHasCar,
-
-    /* 지금수정 */
     onSave,
 
 }) {
@@ -49,7 +47,7 @@ function FilterBar({
 
             <span className="divider">|</span>
 
-            {/* 동반자유형 단일 선택 */}
+            {/* 동반자 유형 단일 선택 */}
             <select className="filter-item" value={companionType} onChange={(e) => setCompanionType(e.target.value)}>
                 <option value="">동반</option>
                 <option value="어린이">어린이</option>
@@ -78,7 +76,6 @@ function FilterBar({
             </label>
 
             {/* 필터 저장 버튼 — 클릭 시 부모(HomePage)의 onSave 실행되어 요약 화면으로 전환 */}
-            {/*  지금수정함  */}
             <button type="button" className="filter-save-btn" onClick={onSave}>
                 필터 저장
             </button>
