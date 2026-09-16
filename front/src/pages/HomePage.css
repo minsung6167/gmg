@@ -15,3 +15,11 @@
 .button-area {
     flex-shrink: 0;
 }
+
+/* 필터 */
+.filter-area {
+    flex-shrink: 0;
+    display: flex;
+    justify-content: center;
+    padding: 12px;
+}

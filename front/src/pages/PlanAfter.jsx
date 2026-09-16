@@ -1,5 +1,6 @@
 import './PlanAfter.css'
 
+// 화면 3-C: AI가 생성한 일정을 지도와 일차별 탭으로 보여주고 체류시간을 입력받는 화면
 function PlanAfter() {
     return (
         <div className="plan-after">

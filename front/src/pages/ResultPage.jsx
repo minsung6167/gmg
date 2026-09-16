@@ -1,5 +1,6 @@
 import './ResultPage.css'
 
+// 화면 3-A: 확정된 지역 정보와 가볼만한곳 리스트, 하단 네비게이션을 보여주는 홈 화면
 function ResultPage() {
     return (
         <div className="result-page">
