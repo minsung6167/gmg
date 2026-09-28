@@ -8,7 +8,8 @@ export async function signup({ name, userId, password, phone, email }) {
         body: JSON.stringify({ name, userId, password, phone, email }),
     })
     if (!res.ok) {
-        throw new Error('회원가입에 실패했습니다.')
+        const message = await res.text()
+        throw new Error(message || '회원가입에 실패했습니다.')
     }
 }
 

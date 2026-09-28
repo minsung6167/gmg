@@ -26,8 +26,8 @@ public class LoginController {
     public ResponseEntity<?> signup(@RequestBody Map<String, String> request) {
         String userId = request.get("userId");
 
-        if (isBlank(userId) || isBlank(request.get("password")) || isBlank(request.get("name"))) {
-            return ResponseEntity.badRequest().body("이름, 아이디, 비밀번호는 필수입니다.");
+        if (isBlank(userId) || isBlank(request.get("password")) || isBlank(request.get("name")) || isBlank(request.get("phone")) || isBlank(request.get("email"))) {
+            return ResponseEntity.badRequest().body("빈칸을 모두 채워주세요.");
         }
         if (userRepository.existsByUserId(userId)) {
             return ResponseEntity.status(409).body("이미 사용 중인 아이디입니다.");
