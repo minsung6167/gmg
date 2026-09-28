@@ -1,15 +1,20 @@
 import { Routes, Route } from 'react-router-dom'
+import StartPage from './pages/StartPage'
 import HomePage from './pages/HomePage'
-import './App.css'
+import LoginPage from './pages/LoginPage'
+import SignupPage from './pages/SignupPage'
 import ResultPage from './pages/ResultPage'
 import PlanBefore from './pages/PlanBefore'
 import PlanAfter from './pages/PlanAfter'
+import './App.css'
 
-// 각 경로(URL)에 화면 컴포넌트를 연결하는 최상위 라우팅 컴포넌트
 function App() {
   return (
     <Routes>
-      <Route path="/" element={<HomePage />} />
+      <Route path="/" element={<StartPage />} />
+      <Route path="/home" element={<HomePage />} />
+      <Route path="/login" element={<LoginPage />} />
+      <Route path="/signup" element={<SignupPage />} />
       <Route path="/result" element={<ResultPage />} />
       <Route path="/plan-before" element={<PlanBefore />} />
       <Route path="/plan-after" element={<PlanAfter />} />
