@@ -33,7 +33,7 @@ function StartPage() {
             )}
             <button
                 className="pick-button"
-                onClick={() => navigate('/random')}
+                onClick={() => navigate('/home')}
             >
                 뽑기
             </button>

@@ -35,3 +35,6 @@ front/dist/
 # 공통
 .vscode/
 .DS_Store
+
+# env파일 무시
+.env
