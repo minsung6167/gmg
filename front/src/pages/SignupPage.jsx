@@ -23,42 +23,44 @@ function SignupPage() {
     }
 
     return (
-        <div className="signup-page">
-            <h2>회원가입</h2>
-            <form onSubmit={handleSubmit}>
-                <input
-                    type="text"
-                    placeholder="이름"
-                    value={name}
-                    onChange={(e) => setName(e.target.value)}
-                />
-                <input
-                    type="text"
-                    placeholder="아이디"
-                    value={userId}
-                    onChange={(e) => setUserId(e.target.value)}
-                />
-                <input
-                    type="password"
-                    placeholder="비밀번호"
-                    value={password}
-                    onChange={(e) => setPassword(e.target.value)}
-                />
-                <input
-                    type="text"
-                    placeholder="전화번호"
-                    value={phone}
-                    onChange={(e) => setPhone(e.target.value)}
-                />
-                <input
-                    type="email"
-                    placeholder="이메일"
-                    value={email}
-                    onChange={(e) => setEmail(e.target.value)}
-                />
-                {error && <p className="error">{error}</p>}
-                <button type="submit">회원가입</button>
-            </form>
+        <div className="page">
+            <div className="signup-page">
+                <h2>회원가입</h2>
+                <form onSubmit={handleSubmit}>
+                    <input
+                        type="text"
+                        placeholder="이름"
+                        value={name}
+                        onChange={(e) => setName(e.target.value)}
+                    />
+                    <input
+                        type="text"
+                        placeholder="아이디"
+                        value={userId}
+                        onChange={(e) => setUserId(e.target.value)}
+                    />
+                    <input
+                        type="password"
+                        placeholder="비밀번호"
+                        value={password}
+                        onChange={(e) => setPassword(e.target.value)}
+                    />
+                    <input
+                        type="text"
+                        placeholder="전화번호"
+                        value={phone}
+                        onChange={(e) => setPhone(e.target.value)}
+                    />
+                    <input
+                        type="email"
+                        placeholder="이메일"
+                        value={email}
+                        onChange={(e) => setEmail(e.target.value)}
+                    />
+                    {error && <p className="error">{error}</p>}
+                    <button type="submit">회원가입</button>
+                </form>
+            </div>
         </div>
     )
 }

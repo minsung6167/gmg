@@ -1,0 +1,24 @@
+.signup-page {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 24px 20px;
+    box-sizing: border-box;
+}
+
+.signup-page form {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.signup-page input,
+.signup-page button {
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.signup-page .error {
+    margin: 0;
+}

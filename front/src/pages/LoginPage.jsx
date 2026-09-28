@@ -20,29 +20,29 @@ function LoginPage() {
     }
 
     return (
-        <div className="login-page">
-            <h2>로그인</h2>
-            <form onSubmit={handleSubmit}>
-                <input
-                    type="text"
-                    placeholder="아이디"
-                    value={userId}
-                    onChange={(e) => setUserId(e.target.value)}
-                />
-                <input
-                    type="password"
-                    placeholder="비밀번호"
-                    value={password}
-                    onChange={(e) => setPassword(e.target.value)}
-                />
-                {error && <p className="error">{error}</p>}
-                <button type="submit">로그인</button>
-            </form>
-            <button type="button" onClick={() => navigate('/signup')}>
-                회원가입
-            </button>
-
-
+        <div className="page">
+            <div className="login-page">
+                <h2>로그인</h2>
+                <form onSubmit={handleSubmit}>
+                    <input
+                        type="text"
+                        placeholder="아이디"
+                        value={userId}
+                        onChange={(e) => setUserId(e.target.value)}
+                    />
+                    <input
+                        type="password"
+                        placeholder="비밀번호"
+                        value={password}
+                        onChange={(e) => setPassword(e.target.value)}
+                    />
+                    {error && <p className="error">{error}</p>}
+                    <button type="submit">로그인</button>
+                </form>
+                <button type="button" onClick={() => navigate('/signup')}>
+                    회원가입
+                </button>
+            </div>
         </div>
     )
 }
