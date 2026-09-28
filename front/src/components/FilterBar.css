@@ -1,0 +1,62 @@
+.filter-bar {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 14px;
+    padding: 12px 20px;
+    border: 1px solid #4a9d4a;
+    border-radius: 8px;
+    font-size: 16px;
+    flex-wrap: wrap;
+    /* 화면 좁아지면 줄바꿈 */
+}
+
+.filter-item {
+    border: none;
+    background: transparent;
+    font-size: inherit;
+    padding: 4px 2px;
+    cursor: pointer;
+}
+
+.filter-item:focus {
+    outline: none;
+}
+
+.divider {
+    color: #bbb;
+    font-weight: 300;
+}
+
+.checkbox-item {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    cursor: pointer;
+}
+
+.date-range {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+}
+
+.date-range input {
+    border: none;
+    background: transparent;
+    font-size: inherit;
+    padding: 4px 2px;
+}
+
+.date-tilde {
+    color: #bbb;
+}
+
+.filter-summary {
+    background: white;
+    border-radius: 999px;
+    padding: 14px 20px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+    cursor: pointer;
+    font-size: 15px;
+}

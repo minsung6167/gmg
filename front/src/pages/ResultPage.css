@@ -1,0 +1,18 @@
+.result-page {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+}
+
+.info-area {
+    flex-shrink: 0;
+}
+
+.list-area {
+    flex: 1;
+    overflow-y: auto;
+}
+
+.nav-area {
+    flex-shrink: 0;
+}
