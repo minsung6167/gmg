@@ -1,59 +1,111 @@
 .filter-bar {
     display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 14px;
-    padding: 12px 20px;
+    flex-direction: column;
+    gap: 10px;
+    padding: 16px 20px;
     width: 100%;
     box-sizing: border-box;
     background: #fff;
-    border: none;
     border-bottom: 1px solid #4a9d4a;
-    border-radius: 0;
-    font-size: 16px;
+    font-size: 14px;
+}
+
+.filter-row {
+    display: flex;
+    align-items: center;
+    gap: 20px;
     flex-wrap: wrap;
 }
 
-
-.filter-item {
-    border: none;
-    background: transparent;
-    font-size: inherit;
-    padding: 4px 2px;
-    cursor: pointer;
+.filter-row--save {
+    justify-content: center;
+    padding-top: 4px;
 }
 
-.filter-item:focus {
+.filter-group {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.filter-group--checkbox {
+    justify-content: flex-end;
+    padding-bottom: 2px;
+}
+
+.filter-label {
+    font-size: 11px;
+    color: #888;
+    font-weight: 500;
+    letter-spacing: 0.02em;
+}
+
+.filter-select {
+    border: 1px solid #e0e0e0;
+    border-radius: 6px;
+    background: #fafafa;
+    font-size: 14px;
+    padding: 6px 10px;
+    cursor: pointer;
+    color: #333;
+    min-width: 100px;
     outline: none;
+    transition: border-color 0.15s;
 }
 
-.divider {
-    color: #bbb;
-    font-weight: 300;
+.filter-select:focus {
+    border-color: #4a9d4a;
+    background: #fff;
 }
 
-.checkbox-item {
+.filter-date {
+    border: 1px solid #e0e0e0;
+    border-radius: 6px;
+    background: #fafafa;
+    font-size: 14px;
+    padding: 6px 10px;
+    color: #333;
+    outline: none;
+    transition: border-color 0.15s;
+}
+
+.filter-date:focus {
+    border-color: #4a9d4a;
+    background: #fff;
+}
+
+.checkbox-label {
     display: flex;
     align-items: center;
-    gap: 4px;
+    gap: 6px;
+    font-size: 14px;
+    color: #333;
+    cursor: pointer;
+    user-select: none;
+}
+
+.filter-checkbox {
+    width: 16px;
+    height: 16px;
+    accent-color: #4a9d4a;
     cursor: pointer;
 }
 
-.date-range {
-    display: flex;
-    align-items: center;
-    gap: 4px;
-}
-
-.date-range input {
+.filter-save-btn {
+    background: #4a9d4a;
+    color: #fff;
     border: none;
-    background: transparent;
-    font-size: inherit;
-    padding: 4px 2px;
+    border-radius: 8px;
+    padding: 8px 32px;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.15s;
+    letter-spacing: 0.03em;
 }
 
-.date-tilde {
-    color: #bbb;
+.filter-save-btn:hover {
+    background: #3a8a3a;
 }
 
 .filter-summary {

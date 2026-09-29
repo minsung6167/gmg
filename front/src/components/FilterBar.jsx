@@ -9,76 +9,84 @@ function FilterBar({
     theme, setTheme,
     hasCar, setHasCar,
     onSave,
-
 }) {
     return (
         <div className="filter-bar">
-            {/* 인원수 선택 (1~10명) */}
-            <select className="filter-item" value={headcount} onChange={(e) => setHeadcount(e.target.value)}>
-                <option value="1">1명</option>
-                <option value="2">2명</option>
-                <option value="3">3명</option>
-                <option value="4">4명</option>
-                <option value="5">5명</option>
-                <option value="6">6명</option>
-                <option value="7">7명</option>
-                <option value="8">8명</option>
-                <option value="9">9명</option>
-                <option value="10">10명</option>
-            </select>
+            {/* 1행: 인원수 + 가는날/오는날 */}
+            <div className="filter-row">
+                <div className="filter-group">
+                    <label className="filter-label">인원수</label>
+                    <select className="filter-select" value={headcount} onChange={(e) => setHeadcount(e.target.value)}>
+                        {[...Array(10)].map((_, i) => (
+                            <option key={i + 1} value={i + 1}>{i + 1}명</option>
+                        ))}
+                    </select>
+                </div>
 
-            <span className="divider">|</span>
+                <div className="filter-group">
+                    <label className="filter-label">가는날</label>
+                    <input
+                        className="filter-date"
+                        type="date"
+                        value={startDate}
+                        onChange={(e) => setStartDate(e.target.value)}
+                    />
+                </div>
 
-            {/* 여행 시작일~종료일 선택 (날짜 입력 2개를 하나로 묶어서 표시) */}
-            <div className="date-range">
-                <input
-                    type="date"
-                    value={startDate}
-                    onChange={(e) => setStartDate(e.target.value)}
-                />
-                <span className="date-tilde">~</span>
-                <input
-                    type="date"
-                    value={endDate}
-                    onChange={(e) => setEndDate(e.target.value)}
-                />
+                <div className="filter-group">
+                    <label className="filter-label">오는날</label>
+                    <input
+                        className="filter-date"
+                        type="date"
+                        value={endDate}
+                        onChange={(e) => setEndDate(e.target.value)}
+                    />
+                </div>
             </div>
 
+            {/* 2행: 동반자유형 + 테마 + 자차 */}
+            <div className="filter-row">
+                <div className="filter-group">
+                    <label className="filter-label">동반자유형</label>
+                    <select className="filter-select" value={companionType} onChange={(e) => setCompanionType(e.target.value)}>
+                        <option value="">선택 안함</option>
+                        <option value="어린이">어린이</option>
+                        <option value="부모님">부모님</option>
+                        <option value="친구">친구</option>
+                        <option value="애인">애인</option>
+                    </select>
+                </div>
 
-            <span className="divider">|</span>
+                <div className="filter-group">
+                    <label className="filter-label">테마</label>
+                    <select className="filter-select" value={theme} onChange={(e) => setTheme(e.target.value)}>
+                        <option value="">선택 안함</option>
+                        <option value="산">산</option>
+                        <option value="바다">바다</option>
+                        <option value="도시">도시</option>
+                        <option value="시골">시골</option>
+                    </select>
+                </div>
 
-            {/* 동반자 유형 단일 선택 */}
-            <select className="filter-item" value={companionType} onChange={(e) => setCompanionType(e.target.value)}>
-                <option value="">동반</option>
-                <option value="어린이">어린이</option>
-                <option value="부모님">부모님</option>
-                <option value="친구">친구</option>
-                <option value="애인">애인</option>
-            </select>
+                <div className="filter-group filter-group--checkbox">
+                    <label className="checkbox-label">
+                        <input
+                            type="checkbox"
+                            className="filter-checkbox"
+                            checked={hasCar}
+                            onChange={(e) => setHasCar(e.target.checked)}
+                        />
+                        자차
+                    </label>
+                </div>
+            </div>
 
-            <span className="divider">|</span>
-
-            {/* 테마 단일 선택 (산/바다/도시/시골) */}
-            <select className="filter-item" value={theme} onChange={(e) => setTheme(e.target.value)}>
-                <option value="">테마</option>
-                <option value="산">산</option>
-                <option value="바다">바다</option>
-                <option value="도시">도시</option>
-                <option value="시골">시골</option>
-            </select>
-
-            <span className="divider">|</span>
-
-            {/* 자차 유무 체크박스 */}
-            <label className="filter-item checkbox-item">
-                <input type="checkbox" checked={hasCar} onChange={(e) => setHasCar(e.target.checked)} />
-                자차
-            </label>
-
-            {/* 필터 저장 버튼 — 클릭 시 부모(HomePage)의 onSave 실행되어 요약 화면으로 전환 */}
-            <button type="button" className="filter-save-btn" onClick={onSave}>
-                필터 저장
-            </button>
+            {/* 3행: 저장 버튼 */}
+            <div className="filter-row filter-row--save">
+                <button type="button" className="filter-save-btn" onClick={onSave}>
+                    필터 저장
+                </button>
+            </div>
         </div>
     )
 }
