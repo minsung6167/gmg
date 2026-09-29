@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import FilterBar from '../components/FilterBar'
 import './HomePage.css'
 import FilterSummary from '../components/FilterSummary'  // 추가 필요
@@ -17,6 +17,20 @@ function HomePage() {
     // 필터 패널이 펼쳐져 있는지(true → FilterBar 표시) 접혀있는지(false → FilterSummary 표시) 여부
     const [isFilterOpen, setIsFilterOpen] = useState(true) // 처음엔 열린 상태로 시작
 
+
+    useEffect(() => {
+        if (!window.kakao || !window.kakao.maps) return
+
+        const container = document.getElementById('map')
+        if (!container) return
+
+        const map = new window.kakao.maps.Map(container, {
+            center: new window.kakao.maps.LatLng(36.5, 127.9),
+            level: 13,
+        })
+
+        console.log('map loaded', map)
+    }, [])
     return (
         <div className="page">
             <div className="home-page">
@@ -46,8 +60,33 @@ function HomePage() {
                 </div>
 
 
-                <div className="map-area">{/* 지도 */}</div>
-                <div className="button-area">{/* 버튼 */}</div>
+                <div className="map-area">
+                    <div
+                        id="map"
+                        style={{
+                            width: '100%',
+                            maxWidth: '420px',
+                            height: '420px',
+                            margin: '0 auto',
+                            borderRadius: '12px',
+                            border: '1px solid #ddd',
+                            overflow: 'hidden',
+                        }}
+                    />
+                </div>
+                <button
+                    style={{
+                        backgroundColor: '#4CAF50',
+                        color: 'white',
+                        border: 'none',
+                        borderRadius: '12px',
+                        padding: '12px 20px',
+                        fontSize: '16px',
+                        cursor: 'pointer',
+                    }}
+                >
+                    랜덤 돌리기
+                </button>
             </div>
         </div>
     )
