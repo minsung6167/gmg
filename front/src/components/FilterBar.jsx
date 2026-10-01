@@ -1,22 +1,22 @@
 import './FilterBar.css'
 
+const COMPANION_OPTIONS = ['어린이', '부모님', '친구', '애인']
+const THEME_OPTIONS = ['산', '바다', '도시', '시골']
+
 // 인원/날짜/동반자유형/테마/자차유무 필터 항목을 입력받는 드롭다운 형태의 필터 패널
-function FilterBar({
-    headcount, setHeadcount,
-    startDate, setStartDate,
-    endDate, setEndDate,
-    companionType, setCompanionType,
-    theme, setTheme,
-    hasCar, setHasCar,
-    onSave,
-}) {
+function FilterBar({ filters, onChange, onSave }) {
     return (
         <div className="filter-bar">
             {/* 1행: 인원수 + 가는날/오는날 */}
             <div className="filter-row">
                 <div className="filter-group">
-                    <label className="filter-label">인원수</label>
-                    <select className="filter-select" value={headcount} onChange={(e) => setHeadcount(e.target.value)}>
+                    <label className="filter-label" htmlFor="headcount">인원수</label>
+                    <select
+                        id="headcount"
+                        className="filter-select"
+                        value={filters.headcount}
+                        onChange={(e) => onChange('headcount', e.target.value)}
+                    >
                         {[...Array(10)].map((_, i) => (
                             <option key={i + 1} value={i + 1}>{i + 1}명</option>
                         ))}
@@ -24,22 +24,24 @@ function FilterBar({
                 </div>
 
                 <div className="filter-group">
-                    <label className="filter-label">가는날</label>
+                    <label className="filter-label" htmlFor="startDate">가는날</label>
                     <input
+                        id="startDate"
                         className="filter-date"
                         type="date"
-                        value={startDate}
-                        onChange={(e) => setStartDate(e.target.value)}
+                        value={filters.startDate}
+                        onChange={(e) => onChange('startDate', e.target.value)}
                     />
                 </div>
 
                 <div className="filter-group">
-                    <label className="filter-label">오는날</label>
+                    <label className="filter-label" htmlFor="endDate">오는날</label>
                     <input
+                        id="endDate"
                         className="filter-date"
                         type="date"
-                        value={endDate}
-                        onChange={(e) => setEndDate(e.target.value)}
+                        value={filters.endDate}
+                        onChange={(e) => onChange('endDate', e.target.value)}
                     />
                 </div>
             </div>
@@ -47,24 +49,32 @@ function FilterBar({
             {/* 2행: 동반자유형 + 테마 + 자차 */}
             <div className="filter-row">
                 <div className="filter-group">
-                    <label className="filter-label">동반자유형</label>
-                    <select className="filter-select" value={companionType} onChange={(e) => setCompanionType(e.target.value)}>
+                    <label className="filter-label" htmlFor="companionType">동반자유형</label>
+                    <select
+                        id="companionType"
+                        className="filter-select"
+                        value={filters.companionType}
+                        onChange={(e) => onChange('companionType', e.target.value)}
+                    >
                         <option value="">선택 안함</option>
-                        <option value="어린이">어린이</option>
-                        <option value="부모님">부모님</option>
-                        <option value="친구">친구</option>
-                        <option value="애인">애인</option>
+                        {COMPANION_OPTIONS.map((opt) => (
+                            <option key={opt} value={opt}>{opt}</option>
+                        ))}
                     </select>
                 </div>
 
                 <div className="filter-group">
-                    <label className="filter-label">테마</label>
-                    <select className="filter-select" value={theme} onChange={(e) => setTheme(e.target.value)}>
+                    <label className="filter-label" htmlFor="theme">테마</label>
+                    <select
+                        id="theme"
+                        className="filter-select"
+                        value={filters.theme}
+                        onChange={(e) => onChange('theme', e.target.value)}
+                    >
                         <option value="">선택 안함</option>
-                        <option value="산">산</option>
-                        <option value="바다">바다</option>
-                        <option value="도시">도시</option>
-                        <option value="시골">시골</option>
+                        {THEME_OPTIONS.map((opt) => (
+                            <option key={opt} value={opt}>{opt}</option>
+                        ))}
                     </select>
                 </div>
 
@@ -73,8 +83,8 @@ function FilterBar({
                         <input
                             type="checkbox"
                             className="filter-checkbox"
-                            checked={hasCar}
-                            onChange={(e) => setHasCar(e.target.checked)}
+                            checked={filters.hasCar}
+                            onChange={(e) => onChange('hasCar', e.target.checked)}
                         />
                         자차
                     </label>

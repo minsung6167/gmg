@@ -1,25 +1,55 @@
+/* 화면 전체 세로 레이아웃 */
 .home-page {
-    flex: 1;
     display: flex;
     flex-direction: column;
-    min-height: 0;
+    min-height: 100vh;
+    position: relative;
 }
 
+/* 지도 위에 떠 있는 필터 패널/요약 바 영역 */
 .filter-area {
-    flex-shrink: 0;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 20;
+    /* TODO: display: flex 없이는 justify-content가 적용되지 않음 — 중앙 정렬 필요하면 display: flex 추가 */
+    justify-content: center;
 }
 
+/* 카카오맵을 중앙에 배치하는 영역 */
 .map-area {
-    flex: 1;
+    position: relative;
+    z-index: 1;
+    width: 100%;
+    margin-top: 12px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .button-area {
     flex-shrink: 0;
 }
 
-/* 필터 */
-.filter-area {
-    display: flex;
-    justify-content: center;
-    padding: 12px;
+/* 카카오맵 div(#map)에 실제로 적용되는 박스 스타일 */
+.map-box {
+    width: 100%;
+    max-width: 420px;
+    height: 420px;
+    margin: 12px auto 0;
+    border-radius: 12px;
+    border: 1px solid #ddd;
+    overflow: hidden;
+}
+
+/* "랜덤 돌리기" 버튼 스타일 */
+.random-btn {
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 12px;
+    padding: 12px 20px;
+    font-size: 16px;
+    cursor: pointer;
 }

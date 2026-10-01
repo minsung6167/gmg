@@ -10,8 +10,9 @@
 
 <body>
   <div id="root"></div>
+  <!-- 카카오맵 JS SDK: appkey는 .env의 VITE_KAKAO_MAP_KEY에서 Vite가 자동 치환 -->
   <script type="text/javascript"
-    src="//dapi.kakao.com/v2/maps/sdk.js?appkey=332cdd044aa5e27fb8dabffb33c56daa&libraries=services"></script>
+    src="//dapi.kakao.com/v2/maps/sdk.js?appkey=%VITE_KAKAO_MAP_KEY%&libraries=services"></script>
   <script type="module" src="/src/main.jsx"></script>
 </body>
 
