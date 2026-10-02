@@ -1,24 +1,84 @@
-.signup-page {
-    flex: 1;
+.page {
     display: flex;
-    flex-direction: column;
     justify-content: center;
-    padding: 24px 20px;
-    box-sizing: border-box;
+    align-items: center;
+    min-height: 100vh;
+    background: #F8FAFC;
+}
+
+.signup-page {
+    width: 360px;
+    padding: 40px 32px;
+    background: #ffffff;
+    border-radius: 16px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
+    text-align: center;
+}
+
+.signup-page h2 {
+    margin-bottom: 28px;
+    font-size: 22px;
+    font-weight: 700;
+    color: #1E293B;
 }
 
 .signup-page form {
     display: flex;
     flex-direction: column;
-    gap: 12px;
+    gap: 14px;
 }
 
-.signup-page input,
-.signup-page button {
-    width: 100%;
-    box-sizing: border-box;
+.signup-page input {
+    padding: 12px 14px;
+    border: 1px solid #E2E8F0;
+    border-radius: 8px;
+    font-size: 14px;
+    background: #F8FAFC;
+    color: #1E293B;
+    outline: none;
+    transition: 0.15s;
+}
+
+.signup-page input::placeholder {
+    color: #94A3B8;
+}
+
+.signup-page input:focus {
+    border-color: #38b3ff;
+    background: #ffffff;
+    box-shadow: 0 0 0 3px rgba(56, 179, 255, 0.15);
+}
+
+/* 비어있거나 중복인 칸 강조 */
+.signup-page input.invalid {
+    border-color: #EF4444;
+    background: #FEF2F2;
+}
+
+.signup-page input.invalid:focus {
+    box-shadow: 0 0 0 3px rgba(239, 68, 68, 0.15);
 }
 
 .signup-page .error {
-    margin: 0;
+    margin: 4px 0 0;
+    font-size: 13px;
+    color: #EF4444;
+    text-align: left;
+}
+
+.signup-page button[type="submit"] {
+    margin-top: 6px;
+    padding: 13px;
+    border: none;
+    border-radius: 8px;
+    background: #38b3ff;
+    color: #ffffff;
+    font-size: 15px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: 0.15s;
+}
+
+.signup-page button[type="submit"]:hover {
+    background: #1f9ced;
 }
