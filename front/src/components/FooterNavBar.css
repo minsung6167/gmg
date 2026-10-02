@@ -1,0 +1,37 @@
+.footer-nav {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    max-width: 430px;
+    margin: 0 auto;
+    height: 60px;
+    background: #ffffff;
+    border-top: 1px solid #e0e0e0;
+    display: flex;
+}
+
+.nav-item {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-decoration: none;
+    color: #999999;
+    font-size: 14px;
+}
+
+.nav-item.active {
+    color: #38B3FF;
+    font-weight: 700;
+}
+
+.nav-indicator {
+    position: absolute;
+    top: -1px;
+    left: 0;
+    width: calc(100% / 3);
+    height: 3px;
+    background: #38B3FF;
+    transition: transform 0.3s ease;
+}

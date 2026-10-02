@@ -14,11 +14,6 @@ function ResultPage() {
                     {/* 중간: 가볼만한곳 리스트 (최대 20) */}
                     리스트
                 </div>
-
-                <div className="nav-area">
-                    {/* 하단: 네비게이션 (홈/계획/도구) */}
-                    하단바
-                </div>
             </div>
         </div>
     )

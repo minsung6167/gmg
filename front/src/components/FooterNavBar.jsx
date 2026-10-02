@@ -1,0 +1,26 @@
+import { NavLink, useLocation } from 'react-router-dom'
+import './FooterNavBar.css'
+
+function FooterNavBar() {
+    const location = useLocation()
+    let tabIndex = 0
+    if (location.pathname.startsWith('/plan')) tabIndex = 1
+    if (location.pathname === '/tool') tabIndex = 2
+
+    return (
+        <nav className="footer-nav">
+            <NavLink to="/result" className={() => 'nav-item' + (tabIndex === 0 ? ' active' : '')}>
+                홈
+            </NavLink>
+            <NavLink to="/plan-before" className={() => 'nav-item' + (tabIndex === 1 ? ' active' : '')}>
+                계획
+            </NavLink>
+            <NavLink to="/tool" className={() => 'nav-item' + (tabIndex === 2 ? ' active' : '')}>
+                도구
+            </NavLink>
+            <span className="nav-indicator" style={{ transform: `translateX(${tabIndex * 100}%)` }} />
+        </nav>
+    )
+}
+
+export default FooterNavBar
