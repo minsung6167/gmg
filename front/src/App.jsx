@@ -6,6 +6,8 @@ import SignupPage from './pages/SignupPage'
 import ResultPage from './pages/ResultPage'
 import PlanBefore from './pages/PlanBefore'
 import PlanAfter from './pages/PlanAfter'
+import ToolPage from './pages/ToolPage'
+import MainLayout from './components/MainLayout'
 import './App.css'
 
 function App() {
@@ -15,9 +17,12 @@ function App() {
       <Route path="/home" element={<HomePage />} />
       <Route path="/login" element={<LoginPage />} />
       <Route path="/signup" element={<SignupPage />} />
-      <Route path="/result" element={<ResultPage />} />
-      <Route path="/plan-before" element={<PlanBefore />} />
-      <Route path="/plan-after" element={<PlanAfter />} />
+      <Route element={<MainLayout />}>
+        <Route path="/result" element={<ResultPage />} />
+        <Route path="/plan-before" element={<PlanBefore />} />
+        <Route path="/plan-after" element={<PlanAfter />} />
+        <Route path="/tool" element={<ToolPage />} />
+      </Route>
     </Routes>
   )
 }
