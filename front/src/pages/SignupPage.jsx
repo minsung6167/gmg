@@ -41,47 +41,49 @@ function SignupPage() {
 
     return (
         <div className="page">
-            <div className="signup-page">
-                <h2>회원가입</h2>
-                <form onSubmit={handleSubmit}>
-                    <input
-                        type="text"
-                        placeholder="이름"
-                        value={name}
-                        onChange={(e) => setName(e.target.value)}
-                        className={invalidFields.name ? 'invalid' : ''}
-                    />
-                    <input
-                        type="text"
-                        placeholder="아이디"
-                        value={userId}
-                        onChange={(e) => setUserId(e.target.value)}
-                        className={invalidFields.userId ? 'invalid' : ''}
-                    />
-                    <input
-                        type="password"
-                        placeholder="비밀번호"
-                        value={password}
-                        onChange={(e) => setPassword(e.target.value)}
-                        className={invalidFields.password ? 'invalid' : ''}
-                    />
-                    <input
-                        type="text"
-                        placeholder="전화번호"
-                        value={phone}
-                        onChange={(e) => setPhone(e.target.value)}
-                        className={invalidFields.phone ? 'invalid' : ''}
-                    />
-                    <input
-                        type="email"
-                        placeholder="이메일"
-                        value={email}
-                        onChange={(e) => setEmail(e.target.value)}
-                        className={invalidFields.email ? 'invalid' : ''}
-                    />
-                    {error && <p className="error">{error}</p>}
-                    <button type="submit">회원가입</button>
-                </form>
+            <div className="signup-fix">
+                <div className="signup-page">
+                    <h2>회원가입</h2>
+                    <form onSubmit={handleSubmit}>
+                        <input
+                            type="text"
+                            placeholder="이름"
+                            value={name}
+                            onChange={(e) => setName(e.target.value)}
+                            className={invalidFields.name ? 'invalid' : ''}
+                        />
+                        <input
+                            type="text"
+                            placeholder="아이디"
+                            value={userId}
+                            onChange={(e) => setUserId(e.target.value)}
+                            className={invalidFields.userId ? 'invalid' : ''}
+                        />
+                        <input
+                            type="password"
+                            placeholder="비밀번호"
+                            value={password}
+                            onChange={(e) => setPassword(e.target.value)}
+                            className={invalidFields.password ? 'invalid' : ''}
+                        />
+                        <input
+                            type="text"
+                            placeholder="전화번호"
+                            value={phone}
+                            onChange={(e) => setPhone(e.target.value)}
+                            className={invalidFields.phone ? 'invalid' : ''}
+                        />
+                        <input
+                            type="email"
+                            placeholder="이메일"
+                            value={email}
+                            onChange={(e) => setEmail(e.target.value)}
+                            className={invalidFields.email ? 'invalid' : ''}
+                        />
+                        {error && <p className="error">{error}</p>}
+                        <button type="submit">회원가입</button>
+                    </form>
+                </div>
             </div>
         </div>
     )
