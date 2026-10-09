@@ -1,7 +1,8 @@
 import './FilterBar.css'
 
 const COMPANION_OPTIONS = ['어린이', '부모님', '친구', '애인']
-const THEME_OPTIONS = ['산', '바다', '도시', '시골']
+const THEME_OPTIONS = ['자연관광', '역사관광', '레저스포츠', '체험관광', '문화관광']
+
 
 // 인원/날짜/동반자유형/테마/자차유무 필터 항목을 입력받는 드롭다운 형태의 필터 패널
 function FilterBar({ filters, onChange, onSave }) {
