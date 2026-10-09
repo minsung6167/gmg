@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
 import FilterSummary from '../components/FilterSummary'
 import { fetchPlan } from '../api/Plan'
+import { fetchFavorites, addFavorite, removeFavorite } from '../api/Favorite'
 
 import './ResultPage.css'
 
@@ -12,9 +13,6 @@ const dummyPlaces = [
     { id: 4, name: '주문진 수산시장', image: 'https://picsum.photos/seed/place4/200/200', rating: 4.1 },
     { id: 5, name: '정동진', image: 'https://picsum.photos/seed/place5/200/200', rating: null },
 ]
-
-
-
 
 // 화면 3-A: 확정된 지역 정보와 가볼만한곳 리스트, 하단 네비게이션을 보여주는 홈 화면
 function ResultPage() {
@@ -30,13 +28,26 @@ function ResultPage() {
     }, [planId])
 
     const [favoriteIds, setFavoriteIds] = useState([])
-    const toggleFavorite = (placeId) => {
-        if (favoriteIds.includes(placeId)) {
-            setFavoriteIds(favoriteIds.filter((id) => id !== placeId))
+    useEffect(() => {
+        fetchFavorites(planId).then((favorites) => {
+            setFavoriteIds(favorites.map((favorite) => favorite.placeId))
+        })
+    }, [planId])
+
+    const toggleFavorite = async (place) => {
+        if (favoriteIds.includes(place.id)) {
+            const ok = await removeFavorite(planId, place.id)
+            if (ok) {
+                setFavoriteIds(favoriteIds.filter((id) => id !== place.id))
+            }
         } else {
-            setFavoriteIds([...favoriteIds, placeId])
+            const ok = await addFavorite(planId, place)
+            if (ok) {
+                setFavoriteIds([...favoriteIds, place.id])
+            }
         }
     }
+
 
     if (loading) {
         return <div className="page">계획을 불러오는 중이에요...</div>
@@ -77,7 +88,7 @@ function ResultPage() {
                                         {place.rating !== null ? `★ ${place.rating}` : '평점 없음'}
                                     </p>
                                 </div>
-                                <button className="favorite-button" aria-label={`${place.name} 즐겨찾기`} onClick={() => toggleFavorite(place.id)}>
+                                <button className="favorite-button" aria-label={`${place.name} 즐겨찾기`} onClick={() => toggleFavorite(place)}>
                                     {favoriteIds.includes(place.id) ? '★' : '☆'}
                                 </button>
 

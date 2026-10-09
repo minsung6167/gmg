@@ -1,14 +1,13 @@
 package com.gmg.controller;
 
-import com.gmg.dao.FavoriteRepository;
-import com.gmg.dao.PlanRepository;
-import com.gmg.domain.Favorite;  
-import com.gmg.domain.Plan;
+import com.gmg.service.FavoriteService;
+import com.gmg.domain.Favorite;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
 import java.util.Map;  
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody; 
@@ -19,49 +18,67 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/api/plans/{planId}/favorites")
 public class FavoriteController {
 
-    private final FavoriteRepository favoriteRepository;
-    private final PlanRepository planRepository;
+    private final FavoriteService favoriteService;
 
-    public FavoriteController(FavoriteRepository favoriteRepository, PlanRepository planRepository) {
-        this.favoriteRepository = favoriteRepository;
-        this.planRepository = planRepository;
+    public FavoriteController(FavoriteService favoriteService) {
+        this.favoriteService = favoriteService;
     }
-    private boolean isMyPlan(Long planId, HttpServletRequest httpRequest) {
+
+    private Long getLoginUserNo(HttpServletRequest httpRequest) {
         HttpSession session = httpRequest.getSession(false);
-        if (session == null || session.getAttribute("user_no") == null) {
-            return false;
+        if (session == null) {
+            return null;
         }
-        Long userNo = (Long) session.getAttribute("user_no");
-
-        Plan plan = planRepository.findById(planId).orElse(null);
-        return plan != null && plan.getUserNo().equals(userNo);
+        return (Long) session.getAttribute("user_no");
     }
+
     @GetMapping
     public ResponseEntity<?> list(@PathVariable Long planId, HttpServletRequest httpRequest) {
-        if (!isMyPlan(planId, httpRequest)) {
+        Long userNo = getLoginUserNo(httpRequest);
+        if (userNo == null) {
+            return ResponseEntity.status(401).build();
+        }
+        if (!favoriteService.isMyPlan(planId, userNo)) {
             return ResponseEntity.status(404).build();
         }
-        return ResponseEntity.ok(favoriteRepository.findByPlanId(planId));
+        return ResponseEntity.ok(favoriteService.getFavorites(planId));
     }
+    
     @PostMapping
     public ResponseEntity<?> add(@PathVariable Long planId, @RequestBody Map<String, Object> request, HttpServletRequest httpRequest) {
-        if (!isMyPlan(planId, httpRequest)) {
+        Long userNo = getLoginUserNo(httpRequest);
+        if (userNo == null) {
+            return ResponseEntity.status(401).build();
+        }
+        if (!favoriteService.isMyPlan(planId, userNo)) {
             return ResponseEntity.status(404).build();
         }
+
         Long placeId = ((Number) request.get("placeId")).longValue();
-
-        if (favoriteRepository.findByPlanIdAndPlaceId(planId, placeId).isPresent()) {
-            return ResponseEntity.ok().build();
-        }
-
+        String placeName = (String) request.get("placeName");
+        String placeImage = (String) request.get("placeImage");
         Number rating = (Number) request.get("rating");
-        Favorite favorite = new Favorite(
+
+        Favorite favorite = favoriteService.addFavorite(
                 planId,
                 placeId,
-                (String) request.get("placeName"),
-                (String) request.get("placeImage"),
+                placeName,
+                placeImage,
                 rating == null ? null : rating.doubleValue());
-        favoriteRepository.save(favorite);
         return ResponseEntity.ok(favorite);
     }
+    
+    @DeleteMapping("/{placeId}")
+    public ResponseEntity<?> remove(@PathVariable Long planId, @PathVariable Long placeId, HttpServletRequest httpRequest) {
+        Long userNo = getLoginUserNo(httpRequest);
+        if (userNo == null) {
+            return ResponseEntity.status(401).build();
+        }
+        if (!favoriteService.isMyPlan(planId, userNo)) {
+            return ResponseEntity.status(404).build();
+        }
+        favoriteService.removeFavorite(planId, placeId);
+        return ResponseEntity.ok().build();
+    }
+
 }
