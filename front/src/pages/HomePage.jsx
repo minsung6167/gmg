@@ -1,3 +1,4 @@
+import { useNavigate } from 'react-router-dom'   // 추가
 import { useEffect, useRef, useState } from 'react'
 import FilterBar from '../components/FilterBar'
 import FilterSummary from '../components/FilterSummary'
@@ -39,6 +40,8 @@ function HomePage() {
     const spotMarkersRef = useRef([])
     // TOP3 마커에 연결된 정보창(InfoWindow)들 — 재뽑기 시 열려있는 걸 닫기 위해 보관
     const infoWindowsRef = useRef([])
+
+    const navigate = useNavigate()   // 추가
 
     // 카카오맵 SDK가 로드된 뒤 #map 요소에 지도를 1회만 생성 (최초 렌더링 시 한 번)
     useEffect(() => {
@@ -124,6 +127,13 @@ function HomePage() {
         }
     }
 
+    // 추가: "이 지역으로 계획짜기" 클릭 시 ResultPage로 데이터 넘기기
+    const handleGoToResult = () => {
+        navigate('/result', {
+            state: { filters, pickedCity, spots },
+        })
+    }
+
     return (
         <div className="page">
             <div className="home-page">
@@ -144,7 +154,14 @@ function HomePage() {
                 </div>
 
                 <div className="button-area">
-                    <button className="random-btn" onClick={handleRandomClick}>랜덤 돌리기</button>
+                    {pickedCity ? (
+                        <>
+                            <button onClick={handleRandomClick}>다시 돌리기</button>
+                            <button onClick={handleGoToResult}>이 지역으로 계획짜기</button>
+                        </>
+                    ) : (
+                        <button className="random-btn" onClick={handleRandomClick}>랜덤 돌리기</button>
+                    )}
                 </div>
             </div>
         </div>
