@@ -72,6 +72,7 @@ function HomePage() {
         // 2) 지도 이동 + 지역 마커 표시
         const position = new window.kakao.maps.LatLng(city.y, city.x)
         mapRef.current.setCenter(position)
+        mapRef.current.setLevel(10)   // 추가 — 숫자가 작을수록 더 확대됨
 
         if (regionMarkerRef.current) {
             regionMarkerRef.current.setMap(null) // 이전 지역 마커 제거 (재뽑기 시 중복 방지)
@@ -152,6 +153,13 @@ function HomePage() {
                 <div className="map-area">
                     <div id="map" className="map-box" />
                 </div>
+
+                {pickedCity && (
+                    <div className="city-info">
+                        <h3>{pickedCity.name}</h3>
+                        <p>{pickedCity.description}</p>
+                    </div>
+                )}
 
                 <div className="button-area">
                     {pickedCity ? (
