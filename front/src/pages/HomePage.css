@@ -13,7 +13,8 @@
     left: 0;
     right: 0;
     z-index: 20;
-    /* TODO: display: flex 없이는 justify-content가 적용되지 않음 — 중앙 정렬 필요하면 display: flex 추가 */
+    display: flex;
+    /* 추가 */
     justify-content: center;
 }
 
@@ -45,11 +46,38 @@
 
 /* "랜덤 돌리기" 버튼 스타일 */
 .random-btn {
-    background-color: #4CAF50;
+    background-color: #38B3FF;
     color: white;
     border: none;
     border-radius: 12px;
     padding: 12px 20px;
     font-size: 16px;
     cursor: pointer;
+    width: 100%;
+    /* 추가 — 원하는 가로 길이로 조절 */
+}
+
+.random-btn:hover {
+    background-color: #1aa7ff;
+}
+
+.button-row {
+    display: flex;
+    gap: 8px;
+    width: 100%;
+}
+
+.result-btn {
+    flex: 1;
+    background-color: #38B3FF;
+    color: white;
+    border: none;
+    border-radius: 12px;
+    padding: 12px 20px;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+.result-btn:hover {
+    background-color: #1aa7ff;
 }

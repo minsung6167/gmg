@@ -10,19 +10,6 @@ function FilterBar({ filters, onChange, onSave }) {
         <div className="filter-bar">
             {/* 1행: 인원수 + 가는날/오는날 */}
             <div className="filter-row">
-                <div className="filter-group">
-                    <label className="filter-label" htmlFor="headcount">인원수</label>
-                    <select
-                        id="headcount"
-                        className="filter-select"
-                        value={filters.headcount}
-                        onChange={(e) => onChange('headcount', e.target.value)}
-                    >
-                        {[...Array(10)].map((_, i) => (
-                            <option key={i + 1} value={i + 1}>{i + 1}명</option>
-                        ))}
-                    </select>
-                </div>
 
                 <div className="filter-group">
                     <label className="filter-label" htmlFor="startDate">가는날</label>
@@ -45,10 +32,36 @@ function FilterBar({ filters, onChange, onSave }) {
                         onChange={(e) => onChange('endDate', e.target.value)}
                     />
                 </div>
+
+                <div className="filter-group filter-group--checkbox">
+                    <label className="checkbox-label">
+                        <input
+                            type="checkbox"
+                            className="filter-checkbox"
+                            checked={filters.hasCar}
+                            onChange={(e) => onChange('hasCar', e.target.checked)}
+                        />
+                        자차
+                    </label>
+                </div>
             </div>
 
             {/* 2행: 동반자유형 + 테마 + 자차 */}
             <div className="filter-row">
+                <div className="filter-group">
+                    <label className="filter-label" htmlFor="headcount">인원수</label>
+                    <select
+                        id="headcount"
+                        className="filter-select"
+                        value={filters.headcount}
+                        onChange={(e) => onChange('headcount', e.target.value)}
+                    >
+                        {[...Array(10)].map((_, i) => (
+                            <option key={i + 1} value={i + 1}>{i + 1}명</option>
+                        ))}
+                    </select>
+                </div>
+
                 <div className="filter-group">
                     <label className="filter-label" htmlFor="companionType">동반자유형</label>
                     <select
@@ -79,17 +92,7 @@ function FilterBar({ filters, onChange, onSave }) {
                     </select>
                 </div>
 
-                <div className="filter-group filter-group--checkbox">
-                    <label className="checkbox-label">
-                        <input
-                            type="checkbox"
-                            className="filter-checkbox"
-                            checked={filters.hasCar}
-                            onChange={(e) => onChange('hasCar', e.target.checked)}
-                        />
-                        자차
-                    </label>
-                </div>
+
             </div>
 
             {/* 3행: 저장 버튼 */}

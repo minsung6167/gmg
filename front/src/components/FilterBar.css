@@ -7,7 +7,7 @@
     width: 100%;
     box-sizing: border-box;
     background: #fff;
-    border-bottom: 1px solid #4a9d4a;
+    border-bottom: 1px solid #38B3FF;
     font-size: 14px;
 }
 
@@ -57,7 +57,7 @@
 }
 
 .filter-select:focus {
-    border-color: #4a9d4a;
+    border-color: #38B3FF;
     background: #fff;
 }
 
@@ -74,7 +74,7 @@
 }
 
 .filter-date:focus {
-    border-color: #4a9d4a;
+    border-color: #38B3FF;
     background: #fff;
 }
 
@@ -91,13 +91,13 @@
 .filter-checkbox {
     width: 16px;
     height: 16px;
-    accent-color: #4a9d4a;
+    accent-color: #38B3FF;
     cursor: pointer;
 }
 
 /* "필터 저장" 버튼 */
 .filter-save-btn {
-    background: #4a9d4a;
+    background: #38B3FF;
     color: #fff;
     border: none;
     border-radius: 8px;
@@ -110,7 +110,7 @@
 }
 
 .filter-save-btn:hover {
-    background: #3a8a3a;
+    background: #38B3FF;
 }
 
 /* HomePage에서 필터 패널을 접었을 때 보이는 요약 바 (FilterSummary.jsx) */
