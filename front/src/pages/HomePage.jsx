@@ -97,12 +97,20 @@ function HomePage() {
             infoWindowsRef.current.forEach((infoWindow) => infoWindow.close())
             infoWindowsRef.current = []
 
-            // 4) 응답 중 앞 3개를 TOP3로 사용해 마커 표시
+            const flagMarkerImage = new window.kakao.maps.MarkerImage(
+                'data:image/svg+xml;charset=utf-8,' + encodeURIComponent(
+                    '<svg xmlns="http://www.w3.org/2000/svg" width="33" height="33"><text y="32" font-size="30">🚩</text></svg>'
+                ),
+                new window.kakao.maps.Size(33, 33)
+            )
+
+
             items.slice(0, 3).forEach((spot) => {
                 const spotPosition = new window.kakao.maps.LatLng(spot.mapy, spot.mapx)
                 const marker = new window.kakao.maps.Marker({
                     map: mapRef.current,
                     position: spotPosition,
+                    image: flagMarkerImage,   // 추가
                 })
                 spotMarkersRef.current.push(marker)
 
