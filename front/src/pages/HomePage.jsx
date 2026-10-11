@@ -4,6 +4,7 @@ import FilterBar from '../components/FilterBar'
 import FilterSummary from '../components/FilterSummary'
 import { CITY_COORDINATES } from '../data/cityList'
 import { fetchTourSpots } from '../api/TourSpot'
+import { createPlan } from '../api/Plan'
 import './HomePage.css'
 
 // 화면 2-A/2-B/2-C: 필터 입력(FilterBar) ↔ 필터 요약(FilterSummary)을 토글하고,
@@ -72,6 +73,7 @@ function HomePage() {
         // 2) 지도 이동 + 지역 마커 표시
         const position = new window.kakao.maps.LatLng(city.y, city.x)
         mapRef.current.setCenter(position)
+        mapRef.current.setLevel(10)   // 추가 — 숫자가 작을수록 더 확대됨
 
         if (regionMarkerRef.current) {
             regionMarkerRef.current.setMap(null) // 이전 지역 마커 제거 (재뽑기 시 중복 방지)
@@ -96,12 +98,20 @@ function HomePage() {
             infoWindowsRef.current.forEach((infoWindow) => infoWindow.close())
             infoWindowsRef.current = []
 
-            // 4) 응답 중 앞 3개를 TOP3로 사용해 마커 표시
+            const flagMarkerImage = new window.kakao.maps.MarkerImage(
+                'data:image/svg+xml;charset=utf-8,' + encodeURIComponent(
+                    '<svg xmlns="http://www.w3.org/2000/svg" width="33" height="33"><text y="32" font-size="30">🚩</text></svg>'
+                ),
+                new window.kakao.maps.Size(33, 33)
+            )
+
+
             items.slice(0, 3).forEach((spot) => {
                 const spotPosition = new window.kakao.maps.LatLng(spot.mapy, spot.mapx)
                 const marker = new window.kakao.maps.Marker({
                     map: mapRef.current,
                     position: spotPosition,
+                    image: flagMarkerImage,   // 추가
                 })
                 spotMarkersRef.current.push(marker)
 
@@ -127,11 +137,31 @@ function HomePage() {
         }
     }
 
-    // 추가: "이 지역으로 계획짜기" 클릭 시 ResultPage로 데이터 넘기기
-    const handleGoToResult = () => {
-        navigate('/result', {
-            state: { filters, pickedCity, spots },
-        })
+    // "이 지역으로 계획짜기" 클릭 시: DB에 계획 저장 후 받은 id로 ResultPage 이동
+    const handleGoToResult = async () => {
+        if (!filters.startDate || !filters.endDate) {
+            alert('가는날/오는날을 선택해주세요.')
+            return
+        }
+
+        try {
+            const plan = await createPlan({
+                regionName: pickedCity.name,
+                regionImage: spots[0]?.firstimage ?? '',
+                headcount: filters.headcount,
+                startDate: filters.startDate,
+                endDate: filters.endDate,
+                companionType: filters.companionType,
+                theme: filters.theme,
+                hasCar: filters.hasCar,
+                lDongRegnCd: pickedCity.lDongRegnCd,
+                lDongSignguCd: pickedCity.lDongSignguCd,
+            })
+            navigate(`/plans/${plan.id}/result`)
+        } catch (error) {
+            console.error(error)
+            alert('계획 저장에 실패했습니다.')
+        }
     }
 
     return (
@@ -153,16 +183,24 @@ function HomePage() {
                     <div id="map" className="map-box" />
                 </div>
 
+                {pickedCity && (
+                    <div className="city-info">
+                        <h3>{pickedCity.name}</h3>
+                        <p>{pickedCity.description}</p>
+                    </div>
+                )}
+
                 <div className="button-area">
                     {pickedCity ? (
-                        <>
-                            <button onClick={handleRandomClick}>다시 돌리기</button>
-                            <button onClick={handleGoToResult}>이 지역으로 계획짜기</button>
-                        </>
+                        <div className="button-row">
+                            <button className="result-btn" onClick={handleRandomClick}>다시 돌리기</button>
+                            <button className="result-btn" onClick={handleGoToResult}>이 지역으로 계획짜기</button>
+                        </div>
                     ) : (
                         <button className="random-btn" onClick={handleRandomClick}>랜덤 돌리기</button>
                     )}
                 </div>
+
             </div>
         </div>
     )

@@ -2,8 +2,8 @@
 function FilterSummary({ filters, onClick }) {
     return (
         <div className="filter-summary" onClick={onClick}>
-            {filters.headcount}명 | {filters.startDate}~{filters.endDate} <br />
-            {filters.companionType} | {filters.theme} | {filters.hasCar ? '자차 O' : '자차 X'}
+            {filters.startDate}~{filters.endDate} <br />
+            {filters.headcount}명 | {filters.companionType} | {filters.theme} | {filters.hasCar ? '자차 O' : '자차 X'}
         </div>
     )
 }
