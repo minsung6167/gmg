@@ -3,16 +3,9 @@ import { useParams } from 'react-router-dom'
 import FilterSummary from '../components/FilterSummary'
 import { fetchPlan } from '../api/Plan'
 import { fetchFavorites, addFavorite, removeFavorite } from '../api/Favorite'
+import { fetchTourSpots } from '../api/TourSpot'
 
 import './ResultPage.css'
-
-const dummyPlaces = [
-    { id: 1, name: '경포해변', image: 'https://picsum.photos/seed/place1/200/200', rating: 4.5 },
-    { id: 2, name: '안목해변 커피거리', image: 'https://picsum.photos/seed/place2/200/200', rating: 4.3 },
-    { id: 3, name: '오죽헌', image: 'https://picsum.photos/seed/place3/200/200', rating: 4.4 },
-    { id: 4, name: '주문진 수산시장', image: 'https://picsum.photos/seed/place4/200/200', rating: 4.1 },
-    { id: 5, name: '정동진', image: 'https://picsum.photos/seed/place5/200/200', rating: null },
-]
 
 // 화면 3-A: 확정된 지역 정보와 가볼만한곳 리스트, 하단 네비게이션을 보여주는 홈 화면
 function ResultPage() {
@@ -26,6 +19,22 @@ function ResultPage() {
             .catch(() => setPlan(null))
             .finally(() => setLoading(false))
     }, [planId])
+
+    const [places, setPlaces] = useState([])
+
+    useEffect(() => {
+        if (plan === null) return
+        fetchTourSpots({ lDongRegnCd: plan.regionCode, lDongSignguCd: plan.sigunguCode })
+            .then((result) => {
+                const items = result?.response?.body?.items?.item ?? []
+                setPlaces(items.map((spot) => ({
+                    id: Number(spot.contentid),
+                    name: spot.title,
+                    image: spot.firstimage,
+                    rating: null,
+                })))
+            })
+    }, [plan])
 
     const [favoriteIds, setFavoriteIds] = useState([])
     useEffect(() => {
@@ -77,7 +86,7 @@ function ResultPage() {
                     {/* 중간: 가볼만한곳 리스트 (최대 20) */}
                     <h2 className="list-title">가볼만한 곳</h2>
                     <ul className="place-list">
-                        {dummyPlaces.map((place) => (
+                        {places.map((place) => (
                             <li key={place.id} className="place-item">
                                 <img className="place-photo"
                                     src={place.image}

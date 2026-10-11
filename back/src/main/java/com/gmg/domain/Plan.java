@@ -23,6 +23,10 @@ public class Plan {
 
     private String regionImage;
 
+    private String regionCode;
+
+    private String sigunguCode;
+
     private int headcount;
 
     private LocalDate startDate;
@@ -36,6 +40,22 @@ public class Plan {
     private boolean hasCar;
 
     protected Plan() {
+    }
+
+    public Plan(Long userNo, String regionName, String regionImage, String regionCode, String sigunguCode,
+            int headcount, LocalDate startDate, LocalDate endDate,
+            String companionType, String theme, boolean hasCar) {
+        this.userNo = userNo;
+        this.regionName = regionName;
+        this.regionImage = regionImage;
+        this.regionCode = regionCode;
+        this.sigunguCode = sigunguCode;
+        this.headcount = headcount;
+        this.startDate = startDate;
+        this.endDate = endDate;
+        this.companionType = companionType;
+        this.theme = theme;
+        this.hasCar = hasCar;
     }
 
     public Long getId() {
@@ -52,6 +72,14 @@ public class Plan {
 
     public String getRegionImage() {
         return regionImage;
+    }
+
+    public String getRegionCode() {
+        return regionCode;
+    }
+
+    public String getSigunguCode() {
+        return sigunguCode;
     }
 
     public int getHeadcount() {
