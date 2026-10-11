@@ -4,6 +4,7 @@ import FilterBar from '../components/FilterBar'
 import FilterSummary from '../components/FilterSummary'
 import { CITY_COORDINATES } from '../data/cityList'
 import { fetchTourSpots } from '../api/TourSpot'
+import { createPlan } from '../api/Plan'
 import './HomePage.css'
 
 // 화면 2-A/2-B/2-C: 필터 입력(FilterBar) ↔ 필터 요약(FilterSummary)을 토글하고,
@@ -136,11 +137,31 @@ function HomePage() {
         }
     }
 
-    // 추가: "이 지역으로 계획짜기" 클릭 시 ResultPage로 데이터 넘기기
-    const handleGoToResult = () => {
-        navigate('/result', {
-            state: { filters, pickedCity, spots },
-        })
+    // "이 지역으로 계획짜기" 클릭 시: DB에 계획 저장 후 받은 id로 ResultPage 이동
+    const handleGoToResult = async () => {
+        if (!filters.startDate || !filters.endDate) {
+            alert('가는날/오는날을 선택해주세요.')
+            return
+        }
+
+        try {
+            const plan = await createPlan({
+                regionName: pickedCity.name,
+                regionImage: spots[0]?.firstimage ?? '',
+                headcount: filters.headcount,
+                startDate: filters.startDate,
+                endDate: filters.endDate,
+                companionType: filters.companionType,
+                theme: filters.theme,
+                hasCar: filters.hasCar,
+                lDongRegnCd: pickedCity.lDongRegnCd,
+                lDongSignguCd: pickedCity.lDongSignguCd,
+            })
+            navigate(`/plans/${plan.id}/result`)
+        } catch (error) {
+            console.error(error)
+            alert('계획 저장에 실패했습니다.')
+        }
     }
 
     return (
