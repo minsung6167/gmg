@@ -1,0 +1,338 @@
+.settlement-fix {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    background: #F7FAFC;
+    overflow: hidden;
+}
+
+.settlement-page {
+    flex: 1;
+    overflow-y: auto;
+    padding: 24px 20px 24px;
+    -webkit-overflow-scrolling: touch;
+}
+
+.settlement-page h2 {
+    font-size: 20px;
+    font-weight: 700;
+    color: #1A2733;
+    margin-bottom: 20px;
+}
+
+.section {
+    background: #ffffff;
+    border: 1px solid #E2E8F0;
+    border-radius: 14px;
+    padding: 18px;
+    margin-bottom: 16px;
+}
+
+.section h3 {
+    font-size: 15px;
+    font-weight: 700;
+    color: #1A2733;
+    margin-bottom: 12px;
+}
+
+.sub-title {
+    margin-top: 18px;
+}
+
+/* 공통 input */
+.settlement-page input,
+.settlement-page select {
+    padding: 10px 12px;
+    border: 1px solid #E2E8F0;
+    border-radius: 8px;
+    font-size: 14px;
+    background: #F7FAFC;
+    color: #1A2733;
+    outline: none;
+}
+
+.settlement-page input:focus,
+.settlement-page select:focus {
+    border-color: #38b3ff;
+    background: #ffffff;
+}
+
+/* 멤버 추가 */
+.input-row {
+    display: flex;
+    gap: 8px;
+    margin-bottom: 12px;
+}
+
+.input-row input {
+    flex: 1;
+}
+
+.add-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    padding: 10px 14px;
+    border: none;
+    border-radius: 8px;
+    background: #38b3ff;
+    color: #ffffff;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: 0.15s;
+}
+
+.add-btn:hover {
+    background: #2a9de8;
+}
+
+.add-btn.full {
+    width: 100%;
+}
+
+.chip-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+
+.chip {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    padding: 6px 10px;
+    background: #EAF6FF;
+    color: #1A2733;
+    border-radius: 999px;
+    font-size: 13px;
+    font-weight: 600;
+}
+
+.chip button {
+    border: none;
+    background: none;
+    color: #64748B;
+    cursor: pointer;
+    font-size: 14px;
+    line-height: 1;
+}
+
+/* 지출 입력 */
+.expense-form {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    margin-bottom: 14px;
+}
+
+.expense-list {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+/* 지출 카드 (ExpenseItem.jsx) */
+.expense-card {
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+.expense-item {
+    width: 100%;
+    border: none;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px 12px;
+    background: #F7FAFC;
+    border-radius: 8px;
+    cursor: pointer;
+    text-align: left;
+}
+
+.expense-info {
+    display: flex;
+    flex-direction: column;
+}
+
+.expense-payer {
+    font-size: 13px;
+    font-weight: 700;
+    color: #1A2733;
+}
+
+.expense-memo {
+    font-size: 12px;
+    color: #64748B;
+}
+
+.expense-right {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.expense-amount {
+    font-size: 14px;
+    font-weight: 600;
+    color: #1A2733;
+}
+
+.chevron {
+    color: #94A3B8;
+    transition: transform 0.15s;
+}
+
+.chevron.open {
+    transform: rotate(180deg);
+}
+
+.icon-only {
+    border: none;
+    background: none;
+    color: #94A3B8;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+}
+
+.icon-only:hover {
+    color: #EF4444;
+}
+
+.expense-breakdown {
+    padding: 10px 14px;
+    background: #ffffff;
+    border: 1px solid #E2E8F0;
+    border-top: none;
+    border-radius: 0 0 8px 8px;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.breakdown-row {
+    display: flex;
+    justify-content: space-between;
+    font-size: 13px;
+    color: #1A2733;
+    padding: 4px 0;
+}
+
+.payer-tag {
+    margin-left: 6px;
+    font-size: 11px;
+    color: #38b3ff;
+    background: #EAF6FF;
+    padding: 2px 6px;
+    border-radius: 999px;
+}
+
+/* 정산 결과 */
+.summary-box {
+    background: #F7FAFC;
+    border-radius: 10px;
+    padding: 12px 14px;
+    margin-bottom: 14px;
+}
+
+.summary-row {
+    display: flex;
+    justify-content: space-between;
+    font-size: 14px;
+    color: #1A2733;
+    padding: 4px 0;
+}
+
+.balance-list {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.balance-item {
+    display: flex;
+    justify-content: space-between;
+    font-size: 14px;
+    padding: 6px 0;
+    border-bottom: 1px solid #F1F5F9;
+}
+
+.balance-item .plus {
+    color: #38b3ff;
+    font-weight: 700;
+}
+
+.balance-item .minus {
+    color: #FF9F43;
+    font-weight: 700;
+}
+
+.transaction-list {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.transaction-item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 12px;
+    background: #FFF7ED;
+    border-radius: 8px;
+    font-size: 13px;
+}
+
+.t-name {
+    font-weight: 700;
+    color: #1A2733;
+}
+
+.t-arrow {
+    color: #FF9F43;
+}
+
+.t-amount {
+    margin-left: auto;
+    font-weight: 700;
+    color: #FF9F43;
+}
+
+.empty-text {
+    font-size: 13px;
+    color: #94A3B8;
+    text-align: center;
+    padding: 8px 0;
+}
+.top-bar {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+.top-bar h2 {
+    margin-bottom: 0;
+}
+
+.back-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 32px;
+    height: 32px;
+    border: none;
+    background: none;
+    color: #1A2733;
+    cursor: pointer;
+    border-radius: 8px;
+    transition: 0.15s;
+}
+
+.back-btn:hover {
+    background: #F1F5F9;
+    color: #38b3ff;
+}

@@ -1,0 +1,72 @@
+tool.fix {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    background: #F7FAFC;
+}
+
+.tool-page {
+    flex: 1;
+    padding: 24px 20px 90px;
+}
+
+.tool-page h2 {
+    font-size: 20px;
+    font-weight: 700;
+    color: #1A2733;
+    margin-bottom: 20px;
+}
+
+.tool-list {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+}
+
+.tool-card {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    width: 100%;
+    padding: 18px;
+    border: 1px solid #E2E8F0;
+    border-radius: 14px;
+    background: #ffffff;
+    cursor: pointer;
+    text-align: left;
+    transition: 0.15s;
+}
+
+.tool-card:hover {
+    border-color: #38b3ff;
+    box-shadow: 0 2px 10px rgba(56, 179, 255, 0.12);
+}
+
+.tool-icon {
+    flex-shrink: 0;
+    width: 48px;
+    height: 48px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 12px;
+    background: #EAF6FF;
+    color: #38b3ff;
+}
+
+.tool-text {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.tool-title {
+    font-size: 16px;
+    font-weight: 700;
+    color: #1A2733;
+}
+
+.tool-desc {
+    font-size: 13px;
+    color: #64748B;
+}

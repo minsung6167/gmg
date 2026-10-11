@@ -1,0 +1,258 @@
+.page {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    background: #F7FAFC;
+    overflow: hidden;
+}
+
+.ladder-page {
+    flex: 1;
+    overflow-y: auto;
+    padding: 24px 20px 24px;
+    -webkit-overflow-scrolling: touch;
+}
+
+.top-bar {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+.top-bar h2 {
+    font-size: 20px;
+    font-weight: 700;
+    color: #1A2733;
+    margin: 0;
+}
+
+.back-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 32px;
+    height: 32px;
+    border: none;
+    background: none;
+    color: #1A2733;
+    cursor: pointer;
+    border-radius: 8px;
+    transition: 0.15s;
+}
+
+.back-btn:hover {
+    background: #F1F5F9;
+    color: #38b3ff;
+}
+
+.section {
+    background: #ffffff;
+    border: 1px solid #E2E8F0;
+    border-radius: 14px;
+    padding: 18px;
+    margin-bottom: 16px;
+}
+
+/* 참가자 입력 */
+.input-row {
+    display: flex;
+    gap: 8px;
+    margin-bottom: 12px;
+}
+
+.input-row input {
+    flex: 1;
+    padding: 10px 12px;
+    border: 1px solid #E2E8F0;
+    border-radius: 8px;
+    font-size: 14px;
+    background: #F7FAFC;
+    color: #1A2733;
+    outline: none;
+}
+
+.input-row input:focus {
+    border-color: #38b3ff;
+    background: #ffffff;
+}
+
+.add-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 10px 14px;
+    border: none;
+    border-radius: 8px;
+    background: #38b3ff;
+    color: #ffffff;
+    cursor: pointer;
+    transition: 0.15s;
+}
+
+.add-btn:hover {
+    background: #2a9de8;
+}
+
+.chip-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+
+.chip {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    padding: 6px 10px;
+    background: #EAF6FF;
+    color: #1A2733;
+    border-radius: 999px;
+    font-size: 13px;
+    font-weight: 600;
+}
+
+.chip button {
+    border: none;
+    background: none;
+    color: #64748B;
+    cursor: pointer;
+    font-size: 14px;
+    line-height: 1;
+}
+
+/* 사다리 영역 */
+.ladder-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 14px;
+}
+
+.ladder-header h3 {
+    font-size: 14px;
+    font-weight: 700;
+    color: #1A2733;
+}
+
+.regen-btn {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    padding: 6px 10px;
+    border: 1px solid #E2E8F0;
+    border-radius: 8px;
+    background: #ffffff;
+    color: #64748B;
+    font-size: 12px;
+    cursor: pointer;
+    transition: 0.15s;
+}
+
+.regen-btn:hover:not(:disabled) {
+    border-color: #38b3ff;
+    color: #38b3ff;
+}
+
+.regen-btn:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+.ladder-scroll {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+}
+
+.ladder-board {
+    position: relative;
+    margin: 0 auto;
+}
+
+.name-row,
+.result-row {
+    position: relative;
+    height: 36px;
+}
+
+.name-btn,
+.result-input {
+    position: absolute;
+    transform: translateX(-50%);
+    width: 56px;
+    text-align: center;
+    font-size: 12px;
+    font-weight: 700;
+    border-radius: 8px;
+    padding: 6px 2px;
+}
+
+.name-btn {
+    border: 1px solid #E2E8F0;
+    background: #EAF6FF;
+    color: #1A2733;
+    cursor: pointer;
+    transition: 0.15s;
+}
+
+.name-btn:hover:not(:disabled) {
+    border-color: #38b3ff;
+    background: #DCEEFF;
+}
+
+.name-btn:disabled {
+    cursor: not-allowed;
+    opacity: 0.6;
+}
+
+.result-input {
+    border: 1px solid #E2E8F0;
+    background: #F7FAFC;
+    color: #1A2733;
+    outline: none;
+}
+
+.result-input:focus {
+    border-color: #38b3ff;
+    background: #ffffff;
+}
+
+.result-input.hit {
+    border-color: #FF9F43;
+    background: #FFF7ED;
+    color: #FF9F43;
+    font-weight: 700;
+}
+
+.ladder-canvas {
+    display: block;
+}
+
+.result-box {
+    margin-top: 16px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+    padding: 14px 24px;
+    background: #FFF7ED;
+    border-radius: 12px;
+}
+
+.result-box span {
+    font-size: 13px;
+    color: #FF9F43;
+    font-weight: 600;
+}
+
+.result-box strong {
+    font-size: 22px;
+    color: #1A2733;
+}
+
+.empty-text {
+    font-size: 13px;
+    color: #94A3B8;
+    text-align: center;
+    padding: 8px 0;
+}

@@ -5,7 +5,7 @@ function FooterNavBar() {
     const location = useLocation()
     let tabIndex = 0
     if (location.pathname.startsWith('/plan')) tabIndex = 1
-    if (location.pathname === '/tool') tabIndex = 2
+    if (location.pathname.startsWith('/tool')) tabIndex = 2
 
     return (
         <nav className="footer-nav">
