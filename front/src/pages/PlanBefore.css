@@ -17,3 +17,67 @@
 .button-area {
     flex-shrink: 0;
 }
+
+.plan-region-name {
+    margin: 16px 16px 4px;
+    font-size: 22px;
+}
+
+.fav-title {
+    margin: 16px 16px 8px;
+    font-size: 16px;
+}
+
+.fav-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.fav-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 12px 16px;
+}
+
+.fav-photo {
+    width: 64px;
+    height: 64px;
+    object-fit: cover;
+    flex-shrink: 0;
+}
+
+.fav-info {
+    flex: 1;
+    min-width: 0;
+}
+
+.fav-name,
+.fav-rating {
+    margin: 0;
+}
+
+.fav-empty {
+    padding: 0 16px;
+    color: #999999;
+}
+
+.ai-plan-button {
+    display: block;
+    width: calc(100% - 32px);
+    margin: 12px 16px;
+    padding: 14px;
+    border: none;
+    border-radius: 12px;
+    background: #38B3FF;
+    color: #ffffff;
+    font-size: 16px;
+    font-weight: 700;
+    cursor: pointer;
+}
+
+.ai-plan-button:disabled {
+    background: #cccccc;
+    cursor: not-allowed;
+}
