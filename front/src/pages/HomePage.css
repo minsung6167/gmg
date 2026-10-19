@@ -18,35 +18,58 @@
     justify-content: center;
 }
 
-/* 카카오맵을 중앙에 배치하는 영역 */
+.filter-save-btn {
+    width: 98%;
+    margin: 4px auto 0;
+    /* auto로 좌우 가운데 정렬 */
+    display: block;
+    margin-top: 3px;
+    background: #2f22e1;
+    color: #fff;
+    border: none;
+    border-radius: 12px;
+    padding: 12px 0;
+    font-size: 15px;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.filter-save-btn:hover {
+    background: #2114d4;
+}
+
+/* 카카오맵을 화면 전체 배경으로 깔아주는 영역 */
 .map-area {
-    position: relative;
-    z-index: 1;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 0;
+}
+
+.map-box {
     width: 100%;
-    margin-top: 12px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    height: 100%;
+    max-width: none;
+    margin: 0;
+    border-radius: 0;
+    border: none;
 }
 
 .button-area {
-    flex-shrink: 0;
+    position: absolute;
+    bottom: 20px;
+    left: 20px;
+    right: 20px;
+    z-index: 10;
 }
 
-/* 카카오맵 div(#map)에 실제로 적용되는 박스 스타일 */
-.map-box {
-    width: 100%;
-    max-width: 420px;
-    height: 420px;
-    margin: 12px auto 0;
-    border-radius: 12px;
-    border: 1px solid #ddd;
-    overflow: hidden;
-}
+
 
 /* "랜덤 돌리기" 버튼 스타일 */
 .random-btn {
-    background-color: #38B3FF;
+    background-color: #2f22e1;
     color: white;
     border: none;
     border-radius: 12px;
@@ -58,7 +81,7 @@
 }
 
 .random-btn:hover {
-    background-color: #1aa7ff;
+    background-color: #2114d4;
 }
 
 .button-row {
@@ -69,7 +92,7 @@
 
 .result-btn {
     flex: 1;
-    background-color: #38B3FF;
+    background-color: #2f22e1;
     color: white;
     border: none;
     border-radius: 12px;
@@ -79,14 +102,17 @@
 }
 
 .result-btn:hover {
-    background-color: #1aa7ff;
+    background-color: #2114d4;
 }
 
 .city-info {
-    text-align: center;
-    padding: 8px 20px;
-    position: relative;
-    top: -45px;
+    position: absolute;
+    bottom: 100px;
+    left: 20px;
+    right: 20px;
+    z-index: 10;
+    top: auto;
+    /* 기존 top: -45px 제거 효과 */
 }
 
 

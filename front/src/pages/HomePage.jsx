@@ -169,15 +169,17 @@ function HomePage() {
             <div className="home-page">
                 <div className="filter-area">
                     {isFilterOpen ? (
-                        <FilterBar
-                            filters={filters}
-                            onChange={handleChange}
-                            onSave={() => setIsFilterOpen(false)} // "필터 저장" 클릭 시 요약 바로 전환
-                        />
+                        <div className="filter-panel">
+                            <FilterBar filters={filters} onChange={handleChange} />
+                            <button className="filter-save-btn" onClick={() => setIsFilterOpen(false)}>
+                                필터 저장
+                            </button>
+                        </div>
                     ) : (
-                        <FilterSummary filters={filters} onClick={() => setIsFilterOpen(true)} /> // 요약 바 클릭 시 다시 필터 패널 펼침
+                        <FilterSummary filters={filters} onClick={() => setIsFilterOpen(true)} />
                     )}
                 </div>
+
 
                 <div className="map-area">
                     <div id="map" className="map-box" />
