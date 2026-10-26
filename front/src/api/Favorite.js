@@ -20,6 +20,8 @@ export async function addFavorite(planId, place) {
             placeName: place.name,
             placeImage: place.image,
             rating: place.rating,
+            mapx: place.mapx,
+            mapy: place.mapy,
         }),
     })
     return res.ok

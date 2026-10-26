@@ -26,17 +26,25 @@ public class Favorite {
 
     private Double rating;
 
+    private Double mapx;
+
+    private Double mapy;
+
     protected Favorite() {
     }
 
-    public Favorite(Long planId, Long placeId, String placeName, String placeImage, Double rating) {
+    public Favorite(Long planId, Long placeId, String placeName, String placeImage, Double rating,
+            Double mapx, Double mapy) {
         this.planId = planId;
         this.placeId = placeId;
         this.placeName = placeName;
         this.placeImage = placeImage;
         this.rating = rating;
+        this.mapx = mapx;
+        this.mapy = mapy;
     }
-        public Long getId() {
+
+    public Long getId() {
         return id;
     }
 
@@ -60,4 +68,11 @@ public class Favorite {
         return rating;
     }
 
+    public Double getMapx() {
+        return mapx;
+    }
+
+    public Double getMapy() {
+        return mapy;
+    }
 }

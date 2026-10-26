@@ -32,6 +32,8 @@ function ResultPage() {
                     name: spot.title,
                     image: spot.firstimage,
                     rating: null,
+                    mapx: Number(spot.mapx),
+                    mapy: Number(spot.mapy),
                 })))
             })
     }, [plan])

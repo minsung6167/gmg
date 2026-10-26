@@ -58,13 +58,17 @@ public class FavoriteController {
         String placeName = (String) request.get("placeName");
         String placeImage = (String) request.get("placeImage");
         Number rating = (Number) request.get("rating");
+        Number mapx = (Number) request.get("mapx");
+        Number mapy = (Number) request.get("mapy");
 
         Favorite favorite = favoriteService.addFavorite(
                 planId,
                 placeId,
                 placeName,
                 placeImage,
-                rating == null ? null : rating.doubleValue());
+                rating == null ? null : rating.doubleValue(),
+                mapx == null ? null : mapx.doubleValue(),
+                mapy == null ? null : mapy.doubleValue());
         return ResponseEntity.ok(favorite);
     }
     

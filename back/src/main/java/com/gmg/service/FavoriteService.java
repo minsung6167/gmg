@@ -27,12 +27,12 @@ public class FavoriteService {
         return favoriteRepository.findByPlanId(planId);
     }
 
-    public Favorite addFavorite(Long planId, Long placeId, String placeName, String placeImage, Double rating) {
+    public Favorite addFavorite(Long planId, Long placeId, String placeName, String placeImage, Double rating, Double mapx, Double mapy) {
         Favorite existing = favoriteRepository.findByPlanIdAndPlaceId(planId, placeId).orElse(null);
         if (existing != null) {
             return existing;
         }
-        Favorite favorite = new Favorite(planId, placeId, placeName, placeImage, rating);
+        Favorite favorite = new Favorite(planId, placeId, placeName, placeImage, rating, mapx, mapy);
         return favoriteRepository.save(favorite);
     }
 
