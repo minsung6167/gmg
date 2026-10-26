@@ -3,14 +3,13 @@ import './FilterBar.css'
 const COMPANION_OPTIONS = ['어린이', '부모님', '친구', '애인']
 const THEME_OPTIONS = ['자연관광', '역사관광', '레저스포츠', '체험관광', '문화관광']
 
-
-// 인원/날짜/동반자유형/테마/자차유무 필터 항목을 입력받는 드롭다운 형태의 필터 패널
-function FilterBar({ filters, onChange, onSave }) {
+// 인원/날짜/동반자유형/테마/이동수단 입력 필드만 그리는 순수 공유 컴포넌트.
+// 버튼/저장/페이지이동은 이 컴포넌트가 모른다 — 쓰는 쪽(부모 페이지)이 각자 처리.
+function FilterBar({ filters, onChange }) {
     return (
         <div className="filter-bar">
-            {/* 1행: 인원수 + 가는날/오는날 */}
+            {/* 1행: 가는날 → 오는날 */}
             <div className="filter-row">
-
                 <div className="filter-group">
                     <label className="filter-label" htmlFor="startDate">가는날</label>
                     <input
@@ -21,6 +20,8 @@ function FilterBar({ filters, onChange, onSave }) {
                         onChange={(e) => onChange('startDate', e.target.value)}
                     />
                 </div>
+
+                <span className="filter-arrow">→</span>
 
                 <div className="filter-group">
                     <label className="filter-label" htmlFor="endDate">오는날</label>
@@ -33,20 +34,9 @@ function FilterBar({ filters, onChange, onSave }) {
                     />
                 </div>
 
-                <div className="filter-group filter-group--checkbox">
-                    <label className="checkbox-label">
-                        <input
-                            type="checkbox"
-                            className="filter-checkbox"
-                            checked={filters.hasCar}
-                            onChange={(e) => onChange('hasCar', e.target.checked)}
-                        />
-                        자차
-                    </label>
-                </div>
             </div>
 
-            {/* 2행: 동반자유형 + 테마 + 자차 */}
+            {/* 2행: 인원수 + 동반자유형 */}
             <div className="filter-row">
                 <div className="filter-group">
                     <label className="filter-label" htmlFor="headcount">인원수</label>
@@ -76,7 +66,10 @@ function FilterBar({ filters, onChange, onSave }) {
                         ))}
                     </select>
                 </div>
+            </div>
 
+            {/* 3행: 테마 + 이동수단(자차 토글) */}
+            <div className="filter-row">
                 <div className="filter-group">
                     <label className="filter-label" htmlFor="theme">테마</label>
                     <select
@@ -92,14 +85,19 @@ function FilterBar({ filters, onChange, onSave }) {
                     </select>
                 </div>
 
-
-            </div>
-
-            {/* 3행: 저장 버튼 */}
-            <div className="filter-row filter-row--save">
-                <button type="button" className="filter-save-btn" onClick={onSave}>
-                    필터 저장
-                </button>
+                <div className="filter-group">
+                    <label className="filter-label">이동수단</label>
+                    <label className="toggle-label">
+                        🚗 자차
+                        <input
+                            type="checkbox"
+                            className="filter-toggle"
+                            checked={filters.hasCar}
+                            onChange={(e) => onChange('hasCar', e.target.checked)}
+                        />
+                        <span className="toggle-switch" />
+                    </label>
+                </div>
             </div>
         </div>
     )

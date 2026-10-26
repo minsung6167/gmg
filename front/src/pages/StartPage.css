@@ -1,49 +1,212 @@
-.start-fix {
+
+
+
+/* 시작 화면 최외곽: 한 화면 고정, 스크롤 없음 */
+.start-form {
     display: flex;
     flex-direction: column;
-    min-height: 100vh;
+    height: 100vh;
+    overflow: hidden;
     background: #F7FAFC;
 }
 
+/* 콘텐츠 영역 */
 .start-page {
     flex: 1;
     position: relative;
+    min-height: 0;
+    display: flex;
+    justify-content: center;
+    padding: 80px 16px 12px;
+    box-sizing: border-box;
+}
+
+/* 카드 / 필터 / 뽑기 버튼 세로 배치 */
+.start-main {
     width: 100%;
     min-height: 0;
     display: flex;
-    align-items: center;
-    justify-content: center;
+    flex-direction: column;
+    gap: 20px;
 }
 
-/* 우측 상단 wrapper */
+/* 계획 카드 */
+.plan-card {
+    position: relative;
+    flex: 1 0 100vh;
+    max-height: 250px;
+    border-radius: 16px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 12px 14px;
+    color: #fff;
+    box-sizing: border-box;
+    background-color: #64748B;
+    background-size: cover;
+    background-position: center;
+}
+
+/* 카드 위 어두운 그라데이션 (글자 가독성) */
+.plan-card::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(180deg, rgba(0, 0, 0, 0.1) 20%, rgba(0, 0, 0, 0.65) 100%);
+    pointer-events: none;
+}
+
+.plan-card-top,
+.plan-card-bottom {
+    position: relative;
+    z-index: 1;
+}
+
+.plan-card-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 12px;
+}
+
+/* 비로그인 미리보기 등 카드 왼쪽 위 라벨 */
+.plan-badge {
+    padding: 3px 8px;
+    border-radius: 999px;
+    background: rgba(255, 255, 255, 0.22);
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.02em;
+}
+
+.plan-more {
+    margin-left: auto;
+    border: none;
+    background: none;
+    color: #fff;
+    font-size: 12px;
+    cursor: pointer;
+    opacity: 0.9;
+}
+
+.plan-card-bottom strong {
+    display: block;
+    font-size: 20px;
+    margin-bottom: 2px;
+}
+
+.plan-card-bottom p {
+    margin: 0;
+    font-size: 11px;
+    line-height: 1.4;
+    opacity: 0.9;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+.filter-title {
+    margin: 0;
+    font-size: 16px;
+    font-weight: 700;
+    color: #1A2733;
+}
+
+/* FilterBar 영역 */
+.filter-box {
+    border-radius: 15px;
+    overflow: hidden;
+}
+
+ .filter-box .filter-bar {
+    gap: 12px;
+    padding: 10px 12px;
+    border-radius: 15px;
+}
+
+ .filter-box .filter-row {
+    gap: 8px;
+    flex-wrap: nowrap;
+    align-items: flex-end;
+}
+
+ .filter-box .filter-group {
+    flex: 1;
+    min-width: 0;
+    gap: 4px;
+}
+
+ .filter-box.filter-group--checkbox {
+    flex: 0 0 auto;
+    justify-content: flex-end;
+    padding-bottom: 5px;
+}
+
+ .filter-box .filter-row--save {
+    display: none;
+}
+
+ .filter-box .filter-label {
+    font-size: 11px;
+}
+
+.filter-box .filter-select,
+.filter-box .filter-date {
+    width: 100%;
+    font-size: 13px;
+    font-weight: 700;
+    padding: 7px 6px;
+    min-width: 0;
+}
+
+.checkbox-label {
+    font-size: 11px;
+    white-space: nowrap;
+}
+
+.start-page .toggle-label {                          
+        padding: 4px           
+        13px;                  
+    }  
+
+/* 로고 / 상단 버튼 영역 */
+.brand-logo {
+    position: absolute;
+    top: 16px;
+    left: 16px;
+    font-size: 20px;
+    font-weight: 800;
+    color: #494cfc;
+}
+
 .top-right {
     position: absolute;
-    top: 20px;
-    right: 20px;
+    top: 14px;
+    right: 16px;
     display: flex;
     align-items: center;
     gap: 8px;
 }
 
-/* 로그인 전: 로그인 버튼 */
 .start-page .login-button {
-    padding: 9px 18px;
+    padding: 8px 16px;
     border: 1.5px solid #E2E8F0;
     border-radius: 8px;
     background: #ffffff;
     color: #1A2733;
-    font-size: 14px;
+    font-size: 13px;
     font-weight: 600;
     cursor: pointer;
     transition: 0.15s;
 }
 
 .start-page .login-button:hover {
-    border-color: #38b3ff;
-    color: #38b3ff;
+    border-color: #494cfc;
+    color: #494cfc;
 }
 
-/* 로그인 후: 사용자 정보 */
 .start-page .user-info {
     display: flex;
     align-items: center;
@@ -51,7 +214,7 @@
 }
 
 .start-page .user-info span {
-    font-size: 14px;
+    font-size: 13px;
     font-weight: 600;
     color: #1A2733;
 }
@@ -62,7 +225,7 @@
     border-radius: 8px;
     background: transparent;
     color: #64748B;
-    font-size: 13px;
+    font-size: 12px;
     cursor: pointer;
     text-decoration: underline;
     transition: 0.15s;
@@ -72,38 +235,33 @@
     color: #FF9F43;
 }
 
-/* 목록 버튼 */
-.icon-btn {
-    width: 38px;
-    height: 38px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    border: 1px solid #E2E8F0;
-    border-radius: 50%;
-    background: #ffffff;
-    color: #1A2733;
-    cursor: pointer;
-    transition: 0.15s;
+/* 뽑기 버튼 + 안내 문구 묶음 */
+.start-cta {
+    flex-shrink: 0;
+    text-align: center;
 }
 
-.icon-btn:hover {
-    border-color: #38b3ff;
-    color: #38b3ff;
-}
-
-/* 뽑기 버튼  */
+/* 뽑기 버튼 */
 .start-page .pick-button {
-    font-size: 1.5rem;
-    padding: 16px 32px;
+    width: 100%;
+    font-size: 1rem;
+    padding: 12px 24px;
     border: none;
     border-radius: 14px;
-    background: #38b3ff;
+    background: #494cfc;
     color: #ffffff;
     font-weight: 700;
     cursor: pointer;
     box-shadow: 0 4px 16px rgba(56, 179, 255, 0.35);
     transition: 0.15s;
+}
+
+/* 뽑기 버튼 아래 작은 안내 문구 */
+.pick-hint {
+    margin: 8px 0 0;
+    font-size: 11px;
+    color: #94A3B8;
+    line-height: 1.4;
 }
 
 .start-page .pick-button:hover {

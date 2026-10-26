@@ -1,4 +1,4 @@
-import { useNavigate } from 'react-router-dom'   // 추가
+import { useNavigate, useLocation } from 'react-router-dom'   // useLocation 추가
 import { useEffect, useRef, useState } from 'react'
 import FilterBar from '../components/FilterBar'
 import FilterSummary from '../components/FilterSummary'
@@ -7,26 +7,28 @@ import { fetchTourSpots } from '../api/TourSpot'
 import { createPlan } from '../api/Plan'
 import './HomePage.css'
 
-// 화면 2-A/2-B/2-C: 필터 입력(FilterBar) ↔ 필터 요약(FilterSummary)을 토글하고,
-// 카카오맵 위에 "랜덤 돌리기" 결과(지역 마커 + TOP3 관광지 마커)를 보여주는 메인 화면
-function HomePage() {
-    // 필터 6개 값을 객체 하나로 관리 (FilterBar/FilterSummary에 filters로 그대로 전달)
-    const [filters, setFilters] = useState({
-        headcount: 1,
-        startDate: '',
-        endDate: '',
-        companionType: '',
-        theme: '',
-        hasCar: false,
-    })
 
-    // 필터 항목 하나(key)의 값을 value로 변경 — FilterBar의 onChange로 전달됨
+function HomePage() {
+    const location = useLocation()   // 추가 — StartPage에서 넘긴 state 읽기
+
+    // StartPage에서 필터를 들고 왔으면 그 값을, 아니면(직접 /home 접속 등) 기존 기본값을 사용
+    const [filters, setFilters] = useState(
+        location.state ?? {
+            headcount: 1,
+            startDate: '',
+            endDate: '',
+            companionType: '',
+            theme: '',
+            hasCar: false,
+        }
+    )
     const handleChange = (key, value) => {
         setFilters((prev) => ({ ...prev, [key]: value }))
     }
 
-    // true: FilterBar(입력 패널) 표시, false: FilterSummary(요약 바) 표시
+
     const [isFilterOpen, setIsFilterOpen] = useState(true)
+
 
     // 랜덤으로 뽑힌 지역 정보 (cityList.js의 한 항목: name/x/y/lDongRegnCd/lDongSignguCd/themes 등)
     const [pickedCity, setPickedCity] = useState(null)
@@ -169,15 +171,17 @@ function HomePage() {
             <div className="home-page">
                 <div className="filter-area">
                     {isFilterOpen ? (
-                        <FilterBar
-                            filters={filters}
-                            onChange={handleChange}
-                            onSave={() => setIsFilterOpen(false)} // "필터 저장" 클릭 시 요약 바로 전환
-                        />
+                        <div className="filter-panel">
+                            <FilterBar filters={filters} onChange={handleChange} />
+                            <button className="filter-save-btn" onClick={() => setIsFilterOpen(false)}>
+                                필터 저장
+                            </button>
+                        </div>
                     ) : (
-                        <FilterSummary filters={filters} onClick={() => setIsFilterOpen(true)} /> // 요약 바 클릭 시 다시 필터 패널 펼침
+                        <FilterSummary filters={filters} onClick={() => setIsFilterOpen(true)} />
                     )}
                 </div>
+
 
                 <div className="map-area">
                     <div id="map" className="map-box" />
