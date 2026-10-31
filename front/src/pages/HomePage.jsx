@@ -197,8 +197,8 @@ function HomePage() {
                 <div className="button-area">
                     {pickedCity ? (
                         <div className="button-row">
-                            <button className="result-btn" onClick={handleRandomClick}>다시 돌리기</button>
-                            <button className="result-btn" onClick={handleGoToResult}>이 지역으로 계획짜기</button>
+                            <button className="result-btn result-btn--secondary" onClick={handleRandomClick}>다시 돌리기</button>
+                            <button className="result-btn result-btn--primary" onClick={handleGoToResult}>이 지역으로 계획짜기</button>
                         </div>
                     ) : (
                         <button className="random-btn" onClick={handleRandomClick}>랜덤 돌리기</button>
