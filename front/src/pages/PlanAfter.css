@@ -9,10 +9,6 @@
     flex-shrink: 0;
 }
 
-.map-area {
-    flex: 1;
-}
-
 .day-tabs-area {
     flex-shrink: 0;
 }
@@ -115,7 +111,6 @@
 }
 
 .pa-stay input {
-    width: 48px;
     padding: 4px;
     border: 1px solid #dddddd;
     border-radius: 6px;
@@ -129,5 +124,45 @@
 }
 
 .plan-after .map-area {
+    position: relative;
+    top: auto;
+    left: auto;
+    right: auto;
+    bottom: auto;
+    z-index: 1;
     flex: none;
+    height: 220px;
+}
+
+.plan-after .schedule-area {
+    min-height: 0;
+    overflow-y: auto;
+}
+
+.plan-after .pa-stay input[type="time"] {
+    width: 130px;
+}
+
+.plan-after .pa-stay input[type="number"] {
+    width: 56px;
+}
+
+.pa-toolbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 16px 12px;
+}
+
+.pa-day-start {
+    display: block;
+    padding: 0;
+}
+
+.pa-retry {
+    margin: 0 0 0 auto;
+}
+
+.pa-warning {
+    color: #c0392b;
 }

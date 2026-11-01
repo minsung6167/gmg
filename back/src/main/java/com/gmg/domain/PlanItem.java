@@ -117,4 +117,16 @@ public class PlanItem {
     public String getWarning() {
         return warning;
     }
+
+    public void setStayMinutes(int stayMinutes) {
+        this.stayMinutes = stayMinutes;
+    }
+
+    public void setStartTime(String startTime) {
+        this.startTime = startTime;
+    }
+
+    public void setWarning(String warning) {
+        this.warning = warning;
+    }
 }
