@@ -39,7 +39,7 @@
 }
 
 /* 카카오맵을 화면 전체 배경으로 깔아주는 영역 */
-.map-area {
+.home-page .map-area {
     position: absolute;
     top: 0;
     left: 0;

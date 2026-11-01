@@ -7,14 +7,15 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.PutMapping;
 
 import com.gmg.service.PlanService;
 import com.gmg.domain.Plan;
 
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
-import java.time.LocalDate;  
-import java.util.Map;       
+import java.time.LocalDate;
+import java.util.Map;
 
 @RestController
 @RequestMapping("/api/plans")
@@ -56,6 +57,19 @@ public class PlanController {
         return ResponseEntity.ok(plan);
     }
 
+    @GetMapping("/{id}/items")
+    public ResponseEntity<?> getPlanItems(@PathVariable Long id, HttpServletRequest httpRequest) {
+        Long userNo = getLoginUserNo(httpRequest);
+        if (userNo == null) {
+            return ResponseEntity.status(401).build();
+        }
+        Plan plan = planService.getMyPlan(id, userNo);
+        if (plan == null) {
+            return ResponseEntity.status(404).build();
+        }
+        return ResponseEntity.ok(planService.getPlanItems(id));
+    }
+
     @PostMapping
     public ResponseEntity<?> create(@RequestBody Map<String, Object> request, HttpServletRequest httpRequest) {
         Long userNo = getLoginUserNo(httpRequest);
@@ -81,5 +95,49 @@ public class PlanController {
                 (String) request.get("theme"),
                 hasCar);
         return ResponseEntity.ok(plan);
+    }
+
+    @PostMapping("/{id}/ai-plan")
+    public ResponseEntity<?> makeAiPlan(@PathVariable Long id, HttpServletRequest httpRequest) {
+        Long userNo = getLoginUserNo(httpRequest);
+        if (userNo == null) {
+            return ResponseEntity.status(401).build();
+        }
+        Plan plan = planService.getMyPlan(id, userNo);
+        if (plan == null) {
+            return ResponseEntity.status(404).build();
+        }
+        Map schedule = planService.makeAiPlan(id);
+        return ResponseEntity.ok(schedule);
+    }
+
+    @PutMapping("/{id}/items/{itemId}")
+    public ResponseEntity<?> updateStay(@PathVariable Long id, @PathVariable Long itemId,
+            @RequestBody Map<String, Object> request, HttpServletRequest httpRequest) {
+        Long userNo = getLoginUserNo(httpRequest);
+        if (userNo == null) {
+            return ResponseEntity.status(401).build();
+        }
+        Plan plan = planService.getMyPlan(id, userNo);
+        if (plan == null) {
+            return ResponseEntity.status(404).build();
+        }
+        int stayMinutes = Integer.parseInt(String.valueOf(request.get("stayMinutes")));
+        return ResponseEntity.ok(planService.updateStay(id, itemId, stayMinutes));
+    }
+
+    @PutMapping("/{id}/days/{dayNumber}")
+    public ResponseEntity<?> updateDayStart(@PathVariable Long id, @PathVariable int dayNumber,
+            @RequestBody Map<String, Object> request, HttpServletRequest httpRequest) {
+        Long userNo = getLoginUserNo(httpRequest);
+        if (userNo == null) {
+            return ResponseEntity.status(401).build();
+        }
+        Plan plan = planService.getMyPlan(id, userNo);
+        if (plan == null) {
+            return ResponseEntity.status(404).build();
+        }
+        String startTime = (String) request.get("startTime");
+        return ResponseEntity.ok(planService.updateDayStart(id, dayNumber, startTime));
     }
 }

@@ -1,8 +1,8 @@
 import { useEffect, useState } from 'react'
 import { useNavigate, useParams } from 'react-router-dom'
 import FilterSummary from '../components/FilterSummary'
-import { fetchPlan } from '../api/Plan'
 import { fetchFavorites } from '../api/Favorite'
+import { fetchPlan, makeAiPlan } from '../api/Plan'
 
 import './PlanBefore.css'
 
@@ -12,6 +12,7 @@ function PlanBefore() {
     const navigate = useNavigate()
     const [plan, setPlan] = useState(null)
     const [loading, setLoading] = useState(true)
+    const [making, setMaking] = useState(false)
 
     useEffect(() => {
         fetchPlan(planId)
@@ -67,10 +68,17 @@ function PlanBefore() {
                     {/* 하단: "AI 계획 짜기" 버튼 */}
                     <button
                         className="ai-plan-button"
-                        disabled={favorites.length === 0}
-                        onClick={() => navigate(`/plans/${planId}/plan-after`)}
+                        disabled={favorites.length === 0 || making}
+                        onClick={() => {
+                            setMaking(true)
+                            makeAiPlan(planId).then(() => {
+                                navigate(`/plans/${planId}/plan-after`)
+                            }).finally(() => {
+                                setMaking(false)
+                            })
+                        }}
                     >
-                        AI 계획 짜기
+                        {making ? '일정 만드는 중...' : 'AI 계획 짜기'}
                     </button>
                 </div>
             </div>
