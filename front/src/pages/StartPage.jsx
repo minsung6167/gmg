@@ -86,14 +86,16 @@ function StartPage() {
                             style={{ backgroundImage: `url(${plan.regionImage})` }}
                         >
                             <div className="plan-card-top">
-                                <button
-                                    type="button"
-                                    className="plan-more"
-                                    onClick={() => navigate(plan.morePath || '/plans')}
-                                >
-                                    {plan.moreLabel || '더보기'}
-                                </button>
-                            </div>
+                        {(!plan.isDummy || plan.morePath) && (
+                        <button
+                        type="button"
+                        className="plan-more"
+                        onClick={() => navigate(plan.morePath || '/plans')}
+                        >
+                        {plan.moreLabel || '더보기'}
+                        </button>
+    )}
+</div>
                             <div className="plan-card-bottom">
                                 <strong>{plan.regionName}</strong>
                                 <p>{plan.description}</p>
