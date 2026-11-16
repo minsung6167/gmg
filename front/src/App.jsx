@@ -7,6 +7,10 @@ import ResultPage from './pages/ResultPage'
 import PlanBefore from './pages/PlanBefore'
 import PlanAfter from './pages/PlanAfter'
 import ToolPage from './pages/ToolPage'
+import SettlementPage from './pages/SettlementPage'
+import ChecklistPage from './pages/CheckListPage'
+import RoulettePage from './pages/RoulettePage'
+import LadderPage from './pages/LadderPage'
 import PlanList from './pages/PlanList'
 import MainLayout from './components/MainLayout'
 import './App.css'
@@ -24,6 +28,10 @@ function App() {
         <Route path="/plans/:planId/plan-before" element={<PlanBefore />} />
         <Route path="/plans/:planId/plan-after" element={<PlanAfter />} />
         <Route path="/plans/:planId/tool" element={<ToolPage />} />
+        <Route path="/plans/:planId/tool/settlement" element={<SettlementPage />} />
+        <Route path="/plans/:planId/tool/checklist" element={<ChecklistPage />} />
+        <Route path="/plans/:planId/tool/roulette" element={<RoulettePage />} />
+        <Route path="/plans/:planId/tool/ladder" element={<LadderPage />} />
       </Route>
     </Routes>
   )

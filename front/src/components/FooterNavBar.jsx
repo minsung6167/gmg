@@ -20,7 +20,7 @@ function FooterNavBar() {
         })
     }, [planId, location.pathname])
 
-    if (location.pathname.endsWith('/tool')) tabIndex = 2
+    if (location.pathname.includes('/tool')) tabIndex = 2
 
     return (
         <nav className="footer-nav">
